@@ -10,7 +10,6 @@ public class JacmAction extends JiraWebActionSupport
 
     @Override
     public String execute() throws Exception {
-
         return super.execute(); //returns SUCCESS
     }
 }

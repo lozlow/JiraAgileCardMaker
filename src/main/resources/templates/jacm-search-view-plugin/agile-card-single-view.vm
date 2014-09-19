@@ -1,27 +1,3 @@
-<div class="ticket color $!issueType">
-  <div class="titleRow">
-    <span class="titleElement key">
-      <div class="project">$!projectKey</div>
-      <div class="number">$!projectIssueNumber</div>
-      <br>
-    </span>
-    <span class="titleElement estimate">$!estimate</span>
-    <span class="titleElement actual">$!actual</span>
-    <span class="titleElement owner">$!owner</span>
-  </div>
-  <div class="sidebar">
-  	<span class="titleElement Doc">Doc</span>
-  	<span class="titleElement Demo">Demo</span>
-  	<span class="titleElement Review">Review</span>
-  	<img src="$action.getIconUrl()" />
-  	<span class="aui-icon aui-icon-small aui-iconfont-up"></span>
-  	</div>
-  <div class="summaryElement">
-  	<span class="component"></span>
-  	<span class="summary">$!summary</span>
-  </div>
-</div>
-
   <table>
     <tbody>
       <tr>
@@ -30,18 +6,32 @@
           <br/>
           <span class="issue-number">$!projectIssueNumber</span>
         </td>
-        <td class="estimate-info">$!estimate</td>
-        <td class="actual-info">$!owner</td>
+        <td class="estimate-info">$!estimate &nbsp;</td>
+        <td class="actual-info">$!owner &nbsp;</td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td rowspan="2" class="sub-tasks">Sub-tasks</td>
+        <td rowspan="2" class="sub-tasks">
+        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
+        	<br />
+        	$!subtasks
+        </td>
       </tr>
       <tr>
-        <td colspan="2" rowspan="2" class="summary-info">$!summary</td>
+        <td colspan="2" rowspan="2" class="summary-info">
+        	<span class="epic">$!epic</span>
+        	<br />
+        	<span class="parent">$!parent</span>
+        	<br />
+        	$!summary
+        </td>
       </tr>
       <tr>
-        <td class="priority">Major</td>
+        <td class="priority">
+        	$!priority.getPriorityName()
+        	<br />
+        	<i class="fa $!priority.getClassName() fa-3" style="color: $!priority.getColour();"></i>
+        </td>
       </tr>
     </tbody>
   </table>

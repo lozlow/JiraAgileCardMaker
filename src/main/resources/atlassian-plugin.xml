@@ -12,11 +12,11 @@
   <resource type="i18n" name="i18n" location="jacm"/>
   <!-- add our web resources -->
   <web-resource key="jacm-resources" name="jacm Web Resources">
-    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <context>com.caplin.jacm</context>
+    <!-- <dependency>com.atlassian.auiplugin:ajs</dependency> -->
     <resource type="download" name="jacm.css" location="/css/jacm.css"/>
     <resource type="download" name="jacm.js" location="/js/jacm.js"/>
     <resource type="download" name="images/" location="/images"/>
-    <context>jacm</context>
   </web-resource>
   <!-- publish our component -->
   <component key="myPluginComponent" class="com.caplin.MyPluginComponentImpl" public="true">
@@ -27,7 +27,7 @@
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
-      <action name="com.caplin.jira.webwork.JacmAction" alias="JacmAction">
+      <action name="com.caplin.jira.webwork.JacmAction" alias="GenerateJiraCard">
         <view name="success">/templates/jacm-webwork-plugin/jacmaction/success.vm</view>
       </action>
     </actions>
@@ -35,7 +35,7 @@
   <web-item name="JACM Web Item" i18n-name-key="jacm-web-item.name" key="jacm-web-item" section="operations-operations" weight="1000">
     <description key="jacm-web-item.description">The JACM Web Item Plugin</description>
     <label key="jacm-web-item.label"/>
-    <link linkId="jacm-web-item-link">/test</link>
+    <link linkId="jacm-web-item-link">/secure/GenerateJiraCard.jspa?id=${issue.id}</link>
   </web-item>
   <search-request-view name="JACM View" i18n-name-key="jacm-view.name" key="jacm-view" class="com.caplin.jira.search.JACMView" fileExtension="html" contentType="text/html">
     <description key="jacm-view.description">The JACM View Plugin</description>

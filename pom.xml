@@ -6,11 +6,11 @@
     <artifactId>jacm</artifactId>
     <version>1.0-SNAPSHOT</version>
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Caplin</name>
+        <url>http://www.caplin.com/</url>
     </organization>
-    <name>jacm</name>
-    <description>This is the com.caplin:jacm plugin for Atlassian JIRA.</description>
+    <name>jira-agile-cards-plugin</name>
+    <description>JACM by Caplin, for JIRA</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>
@@ -79,6 +79,13 @@
             <version>1.8.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+        	<groupId>com.atlassian.jira.plugins</groupId>
+        	<artifactId>jira-greenhopper-plugin</artifactId>
+        	<version>${jira.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        	
     </dependencies>
     <build>
         <plugins>
