@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="jacm"/>
+  <!-- add our web resources -->
+  <web-resource key="jacm-resources" name="jacm Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="jacm.css" location="/css/jacm.css"/>
+    <resource type="download" name="jacm.js" location="/js/jacm.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>jacm</context>
+  </web-resource>
+  <!-- publish our component -->
+  <component key="myPluginComponent" class="com.caplin.MyPluginComponentImpl" public="true">
+    <interface>com.caplin.MyPluginComponent</interface>
+  </component>
+  <!-- import from the product container -->
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
+    <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
+    <actions>
+      <action name="com.caplin.jira.webwork.JacmAction" alias="JacmAction">
+        <view name="success">/templates/jacm-webwork-plugin/jacmaction/success.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+  <web-item name="JACM Web Item" i18n-name-key="jacm-web-item.name" key="jacm-web-item" section="operations-operations" weight="1000">
+    <description key="jacm-web-item.description">The JACM Web Item Plugin</description>
+    <label key="jacm-web-item.label"/>
+    <link linkId="jacm-web-item-link">/test</link>
+  </web-item>
+  <search-request-view name="JACM View" i18n-name-key="jacm-view.name" key="jacm-view" class="com.caplin.jira.search.JACMView" fileExtension="html" contentType="text/html">
+    <description key="jacm-view.description">The JACM View Plugin</description>
+    <resource name="header" type="velocity" location="templates/jacm-search-view-plugin/agile-card-header-view.vm"/>
+    <resource name="single-view" type="velocity" location="templates/jacm-search-view-plugin/agile-card-single-view.vm"/>
+    <order>10</order>
+  </search-request-view>
+</atlassian-plugin>

@@ -1,0 +1,47 @@
+<div class="ticket color $!issueType">
+  <div class="titleRow">
+    <span class="titleElement key">
+      <div class="project">$!projectKey</div>
+      <div class="number">$!projectIssueNumber</div>
+      <br>
+    </span>
+    <span class="titleElement estimate">$!estimate</span>
+    <span class="titleElement actual">$!actual</span>
+    <span class="titleElement owner">$!owner</span>
+  </div>
+  <div class="sidebar">
+  	<span class="titleElement Doc">Doc</span>
+  	<span class="titleElement Demo">Demo</span>
+  	<span class="titleElement Review">Review</span>
+  	<img src="$action.getIconUrl()" />
+  	<span class="aui-icon aui-icon-small aui-iconfont-up"></span>
+  	</div>
+  <div class="summaryElement">
+  	<span class="component"></span>
+  	<span class="summary">$!summary</span>
+  </div>
+</div>
+
+  <table>
+    <tbody>
+      <tr>
+        <td rowspan="2" class="project-info $!issueType">
+          <span class="project-key">$!projectKey</span>
+          <br/>
+          <span class="issue-number">$!projectIssueNumber</span>
+        </td>
+        <td class="estimate-info">$!estimate</td>
+        <td class="actual-info">$!owner</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td rowspan="2" class="sub-tasks">Sub-tasks</td>
+      </tr>
+      <tr>
+        <td colspan="2" rowspan="2" class="summary-info">$!summary</td>
+      </tr>
+      <tr>
+        <td class="priority">Major</td>
+      </tr>
+    </tbody>
+  </table>

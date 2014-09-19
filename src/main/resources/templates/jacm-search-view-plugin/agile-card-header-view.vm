@@ -1,0 +1,266 @@
+$webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-iconfont")
+<style>
+
+.page {
+    clear: both;
+    page-break-before: always;
+}
+.project {
+    line-height: 18px;
+}
+.number {
+    font-size: 250%;
+}
+select {
+    display: block;
+}
+.ticket {
+    background-color: white;
+    border: 2px solid black;
+    float: left;
+    height: 320px;
+    margin: 20px auto auto 20px;
+    position: relative;
+    width: 335px;
+}
+.epic {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+}
+.titleRow {
+    height: 50px;
+}
+.sidebar {
+    bottom: 0;
+    clear: both;
+    height: 267px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 52px;
+    width: 70px;
+}
+.color .key {
+}
+.color.Bug .key {
+    background-color: #c00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.color.Documentation .key {
+    background-color: #ffd600;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.color.Improvement .key {
+    background-color: #090;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.color.Story .key {
+    background-color: #909;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.color.Task .key {
+    background-color: #bfe4ff;
+    color: black;
+}
+.color.Technical_task .key {
+    background-color: #099;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.color.Front_End .key {
+    background-color: #6c3;
+}
+.titleElement {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    height: 50px;
+    line-height: 50px;
+    outline: 2px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+.titleElement.multiline {
+    line-height: 25px;
+}
+.key {
+    float: left;
+    font-size: 80%;
+    font-weight: bolder;
+    line-height: 25px;
+    width: 35%;
+}
+.estimate {
+    width: 15%;
+}
+.actual {
+    width: 15%;
+}
+.owner {
+    width: 35%;
+}
+.Doc, .Demo, .Review, .Rel_Note, .Wiki {
+    height: 60px;
+    width: 100%;
+}
+.qrcode {
+    height: 88px;
+    width: 100%;
+}
+.qrcode img {
+    height: 50px;
+    margin-top: 20px;
+    width: 50px;
+}
+.summaryElement {
+    font-size: 23px;
+    height: 200px;
+    line-height: 23px;
+    margin-right: 70px;
+    overflow: hidden;
+    padding: 1em;
+}
+.parentSummary, .component {
+    display: block;
+    font-weight: bolder;
+    padding-bottom: 1em;
+}
+.tag {
+    font-size: 23px;
+    height: 20px;
+    margin-top: 200px;
+    padding: 1em;
+    position: absolute;
+    width: 70px;
+}
+.businessvalue {
+    font-size: 23px;
+    height: 20px;
+    margin-left: 194px;
+    margin-top: 200px;
+    padding: 1em;
+    position: absolute;
+    width: 20px;
+}
+.businessvalue.cat1 {
+    background-color: #abda0a;
+}
+.businessvalue.cat2 {
+    background-color: #dad99d;
+}
+.businessvalue.cat3 {
+    background-color: #f36d1a;
+}
+.businessvalue.cat4 {
+    background-color: #18a7da;
+}
+.businessvalue.cat5 {
+    background-color: #19da12;
+}
+.businessvalue.cat6 {
+    background-color: #da205b;
+}
+</style>
+
+<style>
+.Bug {
+    background-color: #c00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Documentation {
+    background-color: #ffd600;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Improvement {
+    background-color: #090;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Story {
+    background-color: #909;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Task {
+    background-color: #bfe4ff;
+    color: black;
+}
+.Technical_task {
+    background-color: #099;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Front_End {
+    background-color: #6c3;
+}
+
+
+.project-info {
+  width: 120px;
+  text-align: center;
+  vertical-align: middle;
+  border-width: 0 3px 3px 0;
+  border-color: black;
+  border-style: solid;
+}
+
+.estimate-info {
+  width: 100px;
+  border-width: 0 0 3px 0;
+  border-color: black;
+  border-style: solid;
+}
+
+.actual-info {
+  width: 100px;
+  border-width: 0 0 3px 3px;
+  border-color: black;
+  border-style: solid;
+}
+
+.project-key {
+
+}
+
+.right-bar div:first-child {
+  margin: -18px 0 0;
+}
+
+.sub-tasks {
+  width: 100px;
+  border-width: 0 0 3px 3px;
+  border-color: black;
+  border-style: solid;
+}
+
+.priority {
+  width: 100px;
+  border-width: 0 0 0 3px;
+  border-color: black;
+  border-style: solid;
+}
+
+.issue-number {
+  font-size: 2em;
+}
+
+.summary-info {
+  max-width: 210px;
+}
+
+table, th, td {
+  border-spacing: 0;
+  border-collapse: separate;
+  vertical-align: top;
+}
+
+table {
+  border: 3px solid black;
+}
+</style>
