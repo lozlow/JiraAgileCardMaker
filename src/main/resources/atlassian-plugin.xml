@@ -13,7 +13,6 @@
   <!-- add our web resources -->
   <web-resource key="jacm-resources" name="jacm Web Resources">
     <context>com.caplin.jacm</context>
-    <!-- <dependency>com.atlassian.auiplugin:ajs</dependency> -->
     <resource type="download" name="jacm.css" location="/css/jacm.css"/>
     <resource type="download" name="jacm.js" location="/js/jacm.js"/>
     <resource type="download" name="images/" location="/images"/>
@@ -21,7 +20,7 @@
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
-      <action name="com.caplin.jira.webwork.JacmAction" alias="GenerateJiraCard">
+      <action name="com.caplin.jira.webwork.JACMAction" alias="GenerateJiraCard">
         <view name="success">/templates/jacm-webwork-plugin/jacmaction/success.vm</view>
       </action>
     </actions>

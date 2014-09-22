@@ -27,7 +27,11 @@
         	#if ($!numsubtasks != 0)
 	        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
 	        	<br />
-	        	$!subtasks
+	        	<ul>
+	        	#foreach ($task in $!subtasks)
+	        		<li>$!task</li>
+	        	#end
+	        	</ul>
 	        #else 
 	        	&nbsp;
 	        #end

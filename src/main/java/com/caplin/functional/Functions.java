@@ -29,19 +29,4 @@ public class Functions {
     	}
     }
 	
-	public static String listToString(List<String> listItems) {
-		final StringBuilder sb = new StringBuilder();
-		listItems.forEach(new Consumer<String> () {
-
-			@Override
-			public void accept(String item) {
-				sb.append(item);
-				sb.append("\n");
-			}
-			
-		});
-		
-		return sb.toString();
-	}
-	
 }

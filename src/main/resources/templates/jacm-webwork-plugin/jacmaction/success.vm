@@ -1,1 +1,9 @@
-<h1>success.vm</h1>
+<!-- this is really nasty -->
+<script>
+  jQuery(document).ready(function() {
+  	jQuery(document.getElementById("header")).hide();
+  	jQuery(document.getElementById("footer")).hide();
+  });
+</script>
+
+$action.getHtml()

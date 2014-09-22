@@ -1,4 +1,9 @@
 <style>
+
+body{
+  -webkit-print-color-adjust:exact;
+}
+
 .Bug {
     background-color: #c00;
     color: white;
@@ -107,6 +112,8 @@ table {
   border: 3px solid black;
   display: inline-table;
   margin: 0 15px 15px 0;
+  width: 400px;
+  height: 350px;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -134,6 +141,15 @@ table {
 .break {
   margin: 0px;
   line-height: 8px;
+}
+
+ul {
+  margin: 10px 0;
+  padding: 0 !important;
+}
+
+li {
+  list-style: none;
 }
 </style>
 <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />

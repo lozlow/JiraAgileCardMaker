@@ -1,13 +1,10 @@
 package com.caplin;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import com.atlassian.greenhopper.manager.issuelink.EpicLinkManagerImpl;
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.caplin.functional.Functions;
@@ -77,8 +74,8 @@ public class IssueHelper implements IIssueHelper {
 	}
 
 	@Override
-	public String getSubtasks() {
-		return Functions.listToString(IssueFns.getSubTasks(this.issue));
+	public List<String> getSubtasks() {
+		return IssueFns.getSubTasks(this.issue);
 	}
 
 	@Override
