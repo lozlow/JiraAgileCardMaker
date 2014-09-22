@@ -66,11 +66,22 @@ public class IssueHelper implements IIssueHelper {
 	@Override
 	public String getEpic() {
 		if (IssueFns.hasEpic(this.issue, this.customFieldManager)) {
+			
 			return IssueFns.getEpicName(this.issue, this.customFieldManager);
+			
+		} else if (IssueFns.hasParent(this.issue)) {
+			
+			if (IssueFns.hasEpic(IssueFns.getParent(this.issue), this.customFieldManager)) {
+				return IssueFns.getEpicName(IssueFns.getParent(this.issue), this.customFieldManager);
+			} else {
+				return "";
+			}
+			
 		} else {
+			
 			return "";
+			
 		}
-		
 	}
 
 	@Override
@@ -87,7 +98,7 @@ public class IssueHelper implements IIssueHelper {
 	public String getParent() {
 		if (IssueFns.hasParent(this.issue)) {
 			Issue parent = IssueFns.getParent(this.issue);
-			return parent.getKey() + ": " + issue.getSummary();
+			return parent.getKey() + ": " + parent.getSummary();
 		} else {
 			return "";
 		}

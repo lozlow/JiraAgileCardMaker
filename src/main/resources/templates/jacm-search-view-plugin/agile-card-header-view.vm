@@ -90,6 +90,7 @@ body{
   border-color: black;
   border-style: solid;
   text-align: center;
+  height: 70px;
 }
 
 .issue-number {
@@ -151,6 +152,7 @@ ul {
 li {
   list-style: none;
 }
+
 </style>
 <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu" />

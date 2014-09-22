@@ -26,6 +26,7 @@ public class JACMAction extends JiraWebActionSupport
 	private final CustomFieldManager customFieldManager;
 
 	private String html;
+	private String issueKey;
 	
     public JACMAction(PageBuilderService pageBuilderService, IssueService issueService, CustomFieldManager customFieldManager) {
     	this.pageBuilderService = pageBuilderService;
@@ -42,6 +43,7 @@ public class JACMAction extends JiraWebActionSupport
 		
 		IssueHelper issueHelper = new IssueHelper(this.customFieldManager, issue);
 		
+		this.issueKey = issue.getKey();
     	this.html = velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-header-view.vm", new HashMap<String, Object> ());
     	this.html += velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-single-view.vm", issueHelper.toMap());
     	
@@ -51,4 +53,9 @@ public class JACMAction extends JiraWebActionSupport
     public String getHtml() {
     	return this.html;
     }
+    
+    public String getIssueKey() {
+    	return this.issueKey;
+    }
+    
 }

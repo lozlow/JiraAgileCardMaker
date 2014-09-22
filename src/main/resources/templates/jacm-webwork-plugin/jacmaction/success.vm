@@ -1,9 +1,31 @@
-<!-- this is really nasty -->
+#set( $h = '#' )
 <script>
   jQuery(document).ready(function() {
-  	jQuery(document.getElementById("header")).hide();
-  	jQuery(document.getElementById("footer")).hide();
+  	jQuery(document.getElementById("button-back")).click(function(e) {
+      e.preventDefault();
+      window.history.go(-1);
+  	});
+  	jQuery(document.getElementById("button-print")).click(function(e) {
+  	  e.preventDefault();
+  	  window.print();
+  	});
   });
 </script>
+<style media="print">
+body {
+  background: #fff;
+}
 
-$action.getHtml()
+${h}header, ${h}controls, ${h}footer {
+  display: none !important;
+}
+</style>
+<div style="margin: 10px 0 0 25px; display: inline-block">
+  <div id="controls">
+    <h1>Agile card for $action.getIssueKey()</h1>
+    <div style="float: right; margin: 0 15px 10px;">
+      <button id="button-back" class="aui-button">Back</button><button id="button-print" class="aui-button aui-button-primary">Print</button>
+  	</div>
+  </div>
+  $action.getHtml()
+</div>
