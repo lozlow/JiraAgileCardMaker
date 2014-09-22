@@ -19,7 +19,7 @@
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-.Task {
+.Sub-task {
     background-color: #bfe4ff;
     color: black;
 }
@@ -50,13 +50,17 @@
   border-width: 0 0 3px 0;
   border-color: black;
   border-style: solid;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .actual-info {
-  width: 100px;
+  width: 110px;
   border-width: 0 0 3px 3px;
   border-color: black;
   border-style: solid;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .project-key {
@@ -72,6 +76,7 @@
   border-width: 0 0 3px 3px;
   border-color: black;
   border-style: solid;
+  padding: 4px;
 }
 
 .priority {
@@ -79,6 +84,7 @@
   border-width: 0 0 0 3px;
   border-color: black;
   border-style: solid;
+  text-align: center;
 }
 
 .issue-number {
@@ -88,6 +94,7 @@
 .summary-info {
   max-width: 210px;
   height: 230px;
+  padding: 10px;
 }
 
 table, th, td {
@@ -100,10 +107,34 @@ table {
   border: 3px solid black;
   display: inline-table;
   margin: 0 15px 15px 0;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.fa-3 {
-  font-size: 5em;
+.fa {
+  font-size: 3em !important;
+}
+
+.label {
+  background-color: #3b7fc4;
+  border: 2px solid #3b7fc4;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.71rem;
+  font-weight: normal;
+  line-height: 0.8;
+  margin-bottom: inherit;
+  padding: 0.22222rem 0.44444rem 0.33333rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.break {
+  margin: 0px;
+  line-height: 8px;
 }
 </style>
 <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu" />

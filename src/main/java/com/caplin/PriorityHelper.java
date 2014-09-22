@@ -2,11 +2,15 @@ package com.caplin;
 
 public enum PriorityHelper {
 	
-	BLOCKER("fa-ban", "red"),
-	CRITICAL("class", "colour"),
-	MAJOR("class", "colour"),
-	MINOR("class", "colour"),
-	TRIVIAL("class", "colour"),
+	//BLOCKER("fa-ban", "red"),
+	//CRITICAL("fa-arrow-circle-o-up", "red"),
+	//MAJOR("fa-arrow-up", "red"),
+	//MINOR("fa-arrow-down", "green"),
+	//TRIVIAL("fa-caret-down", "green"),
+	CRITICAL("fa-ban", "red"),
+	HIGH("fa-arrow-up", "red"),
+	MEDIUM("fa-arrow-right", "red"),
+	LOW("fa-arrow-down", "green"),
 	UNKNOWN();
 	
 	private String className;

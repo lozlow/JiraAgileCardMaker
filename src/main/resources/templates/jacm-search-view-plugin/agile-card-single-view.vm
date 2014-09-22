@@ -6,23 +6,43 @@
           <br/>
           <span class="issue-number">$!projectIssueNumber</span>
         </td>
-        <td class="estimate-info">$!estimate &nbsp;</td>
-        <td class="actual-info">$!owner &nbsp;</td>
+        <td class="estimate-info">
+        	#if ($!estimate != "")
+        		$!estimate
+        	#else
+        		No Estimate
+        	#end
+        </td>
+        <td class="actual-info">
+        	#if ($!actual != "")
+        		$!actual
+        	#else
+        		No Actual
+        	#end
+        </td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td rowspan="2" class="sub-tasks">
-        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
-        	<br />
-        	$!subtasks
+        	#if ($!numsubtasks != 0)
+	        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
+	        	<br />
+	        	$!subtasks
+	        #else 
+	        	&nbsp;
+	        #end
         </td>
       </tr>
       <tr>
         <td colspan="2" rowspan="2" class="summary-info">
-        	<span class="epic">$!epic</span>
-        	<br />
-        	<span class="parent">$!parent</span>
-        	<br />
+        	#if ($!epic != "")
+        		<span class="epic label">$!epic</span>
+        		<p class="break">&nbsp;</p>
+    		#end
+        	#if ($!parent != "")
+        		<span class="parent bolded">$!parent</span>
+        		<p class="break">&nbsp;</p>
+        	#end
         	$!summary
         </td>
       </tr>
@@ -30,7 +50,7 @@
         <td class="priority">
         	$!priority.getPriorityName()
         	<br />
-        	<i class="fa $!priority.getClassName() fa-3" style="color: $!priority.getColour();"></i>
+        	<i class="fa $!priority.getClassName()" style="color: $!priority.getColour();"></i>
         </td>
       </tr>
     </tbody>
