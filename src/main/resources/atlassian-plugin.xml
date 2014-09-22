@@ -18,14 +18,6 @@
     <resource type="download" name="jacm.js" location="/js/jacm.js"/>
     <resource type="download" name="images/" location="/images"/>
   </web-resource>
-  <!-- publish our component
-  <component key="myPluginComponent" class="com.caplin.MyPluginComponentImpl" public="true">
-    <interface>com.caplin.MyPluginComponent</interface>
-  </component>
-  -->
-  <!-- import from the product container
-  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
-  -->
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
