@@ -1,8 +1,5 @@
 package com.caplin.functional;
 
-import java.util.List;
-import java.util.function.Consumer;
-
 public class Functions {
 
 	public static Object emptyStrOnFalsey(Object obj) {

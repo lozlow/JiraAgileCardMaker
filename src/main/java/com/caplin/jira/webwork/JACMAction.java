@@ -1,8 +1,6 @@
 package com.caplin.jira.webwork;
 
-import java.io.Writer;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,21 +13,17 @@ import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 import com.atlassian.velocity.VelocityManager;
-import com.atlassian.webresource.api.assembler.PageBuilderService;
 import com.caplin.IssueHelper;
 
 public class JACMAction extends JiraWebActionSupport
 {
     private static final Logger log = LoggerFactory.getLogger(JACMAction.class);
 	private final IssueService issueService;
-	private final PageBuilderService pageBuilderService;
-	private final CustomFieldManager customFieldManager;
-
+	private final CustomFieldManager customFieldManager;	
 	private String html;
 	private String issueKey;
 	
-    public JACMAction(PageBuilderService pageBuilderService, IssueService issueService, CustomFieldManager customFieldManager) {
-    	this.pageBuilderService = pageBuilderService;
+    public JACMAction(IssueService issueService, CustomFieldManager customFieldManager) {
     	this.issueService = issueService;
     	this.customFieldManager = customFieldManager;
     }
@@ -42,7 +36,7 @@ public class JACMAction extends JiraWebActionSupport
 		Issue issue = issueService.getIssue(currentUser, issueNumber).getIssue();
 		
 		IssueHelper issueHelper = new IssueHelper(this.customFieldManager, issue);
-		
+
 		this.issueKey = issue.getKey();
     	this.html = velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-header-view.vm", new HashMap<String, Object> ());
     	this.html += velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-single-view.vm", issueHelper.toMap());

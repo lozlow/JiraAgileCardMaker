@@ -3,9 +3,7 @@ package com.caplin.functional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
 
-import com.atlassian.greenhopper.manager.issuelink.EpicLinkManagerImpl;
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.caplin.CustomFieldHelper;
@@ -43,7 +41,9 @@ public class IssueFns {
     	
     	if (IssueFns.isEpic(issue)) {
     		try {
-	    		issueList = new EpicLinkManagerImpl().getIssuesInEpic(issue);
+    			//TODO
+	    		//issueList = new EpicLinkManagerImpl().getIssuesInEpic(issue);
+    			throw new NullPointerException();
     		} catch (NullPointerException e) {
     			issueList = new ArrayList<Issue> ();
     		}
@@ -51,21 +51,22 @@ public class IssueFns {
     		issueList = issue.getSubTaskObjects();
     	}
     	
-    	issueList.forEach(new Consumer<Issue> () {
-
-			@Override
-			public void accept(Issue issue) {
-				taskList.add(issue.getKey());
-			}
-		});
-		
+    	for (Issue i: issueList) {
+    		taskList.add(i.getKey());
+    	}
+    	
 		return taskList;
 	}
 	
 	public static boolean hasEpic(Issue issue, CustomFieldManager customFieldManager) {
-		Issue epicIssue = (Issue) issue.getCustomFieldValue(
+		Issue epicIssue = null;
+		try {
+			epicIssue = (Issue) issue.getCustomFieldValue(
 				customFieldManager.getCustomFieldObject(
 						CustomFieldHelper.EPIC_LINK.getFieldName()));
+		} catch (NullPointerException e) {
+			return false;
+		}
 		
 		if (epicIssue != null) {
 			return true;

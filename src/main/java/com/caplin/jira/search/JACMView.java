@@ -2,17 +2,12 @@ package com.caplin.jira.search;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Searcher;
 
-import com.atlassian.greenhopper.manager.issuelink.EpicLinkManagerImpl;
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.IssueFactory;
@@ -26,11 +21,7 @@ import com.atlassian.jira.plugin.searchrequestview.AbstractSearchRequestView;
 import com.atlassian.jira.plugin.searchrequestview.SearchRequestParams;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.jira.util.VelocityParamFactory;
-import com.caplin.CustomFieldHelper;
 import com.caplin.IssueHelper;
-import com.caplin.PriorityHelper;
-import com.caplin.functional.Functions;
-import com.caplin.functional.IssueFns;
 
 public class JACMView extends AbstractSearchRequestView {
 	

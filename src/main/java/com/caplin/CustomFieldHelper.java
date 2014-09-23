@@ -2,7 +2,7 @@ package com.caplin;
 
 public enum CustomFieldHelper {
 
-	EPIC_LINK(10005),
+	EPIC_LINK(10870),
 	ESTIMATED_STORY_POINTS(10243),
 	ACTUAL_STORY_POINTS(10260);
 	

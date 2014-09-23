@@ -3,7 +3,6 @@ package com.caplin;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
@@ -33,7 +32,8 @@ public class IssueHelper implements IIssueHelper {
 
 	@Override
 	public Long getProjectIssueNumber() {
-		return this.issue.getNumber();
+		int startLoc = this.issue.getKey().indexOf("-");
+		return Long.valueOf(this.issue.getKey().substring(startLoc + 1));
 	}
 
 	@Override
