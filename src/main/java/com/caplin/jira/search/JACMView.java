@@ -21,7 +21,7 @@ import com.atlassian.jira.plugin.searchrequestview.AbstractSearchRequestView;
 import com.atlassian.jira.plugin.searchrequestview.SearchRequestParams;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.jira.util.VelocityParamFactory;
-import com.caplin.IssueHelper;
+import com.caplin.helpers.IssueHelper;
 
 public class JACMView extends AbstractSearchRequestView {
 	

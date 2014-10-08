@@ -1,4 +1,6 @@
-package com.caplin;
+package com.caplin.helpers;
+
+import com.caplin.functions.Utility;
 
 public enum PriorityHelper {
 	
@@ -11,13 +13,10 @@ public enum PriorityHelper {
 	HIGH("fa-arrow-up", "red"),
 	MEDIUM("fa-arrow-right", "red"),
 	LOW("fa-arrow-down", "green"),
-	UNKNOWN();
+	UNKNOWN("fa-question-circle", "gainsboro");
 	
 	private String className;
 	private String colour;
-	
-	PriorityHelper() {
-	}
 	
 	PriorityHelper(String className, String colour) {
 		this.className = className;
@@ -33,10 +32,7 @@ public enum PriorityHelper {
 	}
 	
 	public String getPriorityName() {
-		String myName = this.toString();
-		char first = myName.charAt(0);
-		myName = myName.substring(1).toLowerCase();
-		return first + myName;
+		return Utility.capitaliseWord(this.toString());
 	}
 	
 	public static PriorityHelper getPriorityFromString(String priority) {

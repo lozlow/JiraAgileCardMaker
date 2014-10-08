@@ -1,7 +1,7 @@
 <style>
 
 body{
-  -webkit-print-color-adjust:exact;
+  -webkit-print-color-adjust: exact;
 }
 
 .Bug {
@@ -48,6 +48,11 @@ body{
   border-width: 0 3px 3px 0;
   border-color: black;
   border-style: solid;
+  font-size: 25px;
+}
+
+.estimate-info, .actual-info {
+  height: 75px;
 }
 
 .estimate-info {
@@ -66,6 +71,14 @@ body{
   border-style: solid;
   vertical-align: middle;
   text-align: center;
+}
+
+.estimate-info .text, .actual-info .text {
+  font-size: 34px;
+}
+
+.sub-text {
+  font-size: 12px;
 }
 
 .project-key {
@@ -94,13 +107,17 @@ body{
 }
 
 .issue-number {
-  font-size: 2em;
+  font-size: 45px;
 }
 
 .summary-info {
   max-width: 210px;
   height: 230px;
   padding: 10px;
+}
+
+.spacer {
+  height: 30px;
 }
 
 table, th, td {
@@ -114,7 +131,7 @@ table {
   display: inline-table;
   margin: 0 15px 15px 0;
   width: 400px;
-  height: 350px;
+  height: 380px;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -142,7 +159,7 @@ table {
 .break {
   margin: 0px;
   line-height: 8px;
-}
+}​
 
 ul {
   margin: 10px 0;

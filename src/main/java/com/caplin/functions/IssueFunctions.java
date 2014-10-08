@@ -1,4 +1,4 @@
-package com.caplin.functional;
+package com.caplin.functions;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,9 +6,9 @@ import java.util.List;
 
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
-import com.caplin.CustomFieldHelper;
+import com.caplin.helpers.CustomFieldHelper;
 
-public class IssueFns {
+public class IssueFunctions {
 	
 	public static boolean isEpic(Issue issue) {
 		if (issue.getIssueTypeObject().getName().equals("Epic")) {
@@ -39,7 +39,7 @@ public class IssueFns {
     	final List<String> taskList = new ArrayList<String> ();
     	Collection<Issue> issueList;
     	
-    	if (IssueFns.isEpic(issue)) {
+    	if (IssueFunctions.isEpic(issue)) {
     		try {
     			//TODO
 	    		//issueList = new EpicLinkManagerImpl().getIssuesInEpic(issue);
@@ -80,7 +80,7 @@ public class IssueFns {
 				customFieldManager.getCustomFieldObject(
 						CustomFieldHelper.EPIC_LINK.getFieldName()));
 		
-		if (IssueFns.hasParent(issue)) {
+		if (IssueFunctions.hasParent(issue)) {
 			return getEpicName(issue.getParentObject(), customFieldManager);
 		} else if (epicIssue == null) {
 			return null;

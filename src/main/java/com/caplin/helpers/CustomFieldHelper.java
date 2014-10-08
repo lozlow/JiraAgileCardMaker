@@ -1,4 +1,4 @@
-package com.caplin;
+package com.caplin.helpers;
 
 public enum CustomFieldHelper {
 

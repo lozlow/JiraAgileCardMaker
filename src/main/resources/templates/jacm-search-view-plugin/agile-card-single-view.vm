@@ -14,15 +14,19 @@
         	#end
         </td>
         <td class="actual-info">
+        	<!--
         	#if ($!actual != "")
         		$!actual
         	#else
         		No Actual
         	#end
+        	-->
+        	<div class="sup"><span class="sub-text">Actual</span></div>
+        	<span class="text bolded">3.0</span>
         </td>
       </tr>
       <tr>
-        <td>&nbsp;</td>
+        <td class="spacer">&nbsp;</td>
         <td rowspan="2" class="sub-tasks">
         	#if ($!numsubtasks != 0)
 	        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
@@ -32,6 +36,7 @@
 	        		<li>$!task</li>
 	        	#end
 	        	</ul>
+	        	$!restsubtasks
 	        #else 
 	        	&nbsp;
 	        #end

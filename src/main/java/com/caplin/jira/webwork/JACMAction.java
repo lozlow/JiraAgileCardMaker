@@ -13,7 +13,7 @@ import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 import com.atlassian.velocity.VelocityManager;
-import com.caplin.IssueHelper;
+import com.caplin.helpers.IssueHelper;
 
 public class JACMAction extends JiraWebActionSupport
 {
