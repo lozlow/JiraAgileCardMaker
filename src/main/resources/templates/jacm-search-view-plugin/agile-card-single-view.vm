@@ -6,30 +6,35 @@
           <br/>
           <span class="issue-number">$!projectIssueNumber</span>
         </td>
-        <td class="estimate-info">
+        <td class="priority">
+        	<span class="sup-text">$!priority.getPriorityName()</span>
+        	<br />
+        	<i class="fa $!priority.getClassName()" style="color: $!priority.getColour();"></i>
+        </td>
+        <td colspan="2" class="estimate-info">
         	#if ($!estimate != "")
-        		$!estimate
+        		<span class="sup-text">Estimate</span>
+	        	<br />
+	        	<span class="text bolded">$!estimate</span>
         	#else
-        		No Estimate
+        		<span class="sup-text">No Estimate</span>
         	#end
         </td>
         <td class="actual-info">
-        	<!--
         	#if ($!actual != "")
-        		$!actual
+        		<span class="sup-text">Actual</span>
+	        	<br />
+	        	<span class="text bolded">$!actual</span>
         	#else
-        		No Actual
+        		<span class="sup-text">No Actual</span>
         	#end
-        	-->
-        	<div class="sup"><span class="sub-text">Actual</span></div>
-        	<span class="text bolded">3.0</span>
         </td>
       </tr>
       <tr>
-        <td class="spacer">&nbsp;</td>
-        <td rowspan="2" class="sub-tasks">
+        <td colspan="2" class="spacer">&nbsp;</td>
+        <td rowspan="2" colspan="2" class="sub-tasks">
+	        Sub-tasks <span class="bolded">($!numsubtasks)</span>
         	#if ($!numsubtasks != 0)
-	        	Sub-tasks <span class="bolded">($!numsubtasks)</span>
 	        	<br />
 	        	<ul>
 	        	#foreach ($task in $!subtasks)
@@ -43,7 +48,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" rowspan="2" class="summary-info">
+        <td colspan="3" class="summary-info">
         	#if ($!epic != "")
         		<span class="epic label">$!epic</span>
         		<p class="break">&nbsp;</p>
@@ -53,13 +58,6 @@
         		<p class="break">&nbsp;</p>
         	#end
         	$!summary
-        </td>
-      </tr>
-      <tr>
-        <td class="priority">
-        	$!priority.getPriorityName()
-        	<br />
-        	<i class="fa $!priority.getClassName()" style="color: $!priority.getColour();"></i>
         </td>
       </tr>
     </tbody>

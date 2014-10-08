@@ -11,7 +11,7 @@ import com.caplin.functions.IssueFunctions;
 
 public class IssueHelper {
 
-	private static final int NUM_SUBTASKS_TO_SHOW = 1;
+	private static final int NUM_SUBTASKS_TO_SHOW = 7;
 	
 	private Issue issue = null;
 	private final CustomFieldManager customFieldManager;

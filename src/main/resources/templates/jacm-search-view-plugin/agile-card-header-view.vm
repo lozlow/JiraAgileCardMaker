@@ -1,175 +1,176 @@
 <style>
+    body {
+        -webkit-print-color-adjust: exact;
+    }
 
-body{
-  -webkit-print-color-adjust: exact;
-}
+    .Bug {
+        background-color: #c00;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-.Bug {
-    background-color: #c00;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.Documentation {
-    background-color: #ffd600;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.Improvement {
-    background-color: #090;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.Story {
-    background-color: #909;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.Sub-task {
-    background-color: #bfe4ff;
-    color: black;
-}
-.Technical_task {
-    background-color: #099;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-.Front_End {
-    background-color: #6c3;
-}
+    .Documentation {
+        background-color: #ffd600;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-.bolded {
-  font-weight: bold;
-}
+    .Improvement {
+        background-color: #090;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-.project-info {
-  width: 120px;
-  text-align: center;
-  vertical-align: middle;
-  border-width: 0 3px 3px 0;
-  border-color: black;
-  border-style: solid;
-  font-size: 25px;
-}
+    .Story {
+        background-color: #909;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-.estimate-info, .actual-info {
-  height: 75px;
-}
+    .Sub-task {
+        background-color: #bfe4ff;
+        color: black;
+    }
 
-.estimate-info {
-  width: 100px;
-  border-width: 0 0 3px 0;
-  border-color: black;
-  border-style: solid;
-  vertical-align: middle;
-  text-align: center;
-}
+    .Technical_task {
+        background-color: #099;
+        color: white;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 
-.actual-info {
-  width: 110px;
-  border-width: 0 0 3px 3px;
-  border-color: black;
-  border-style: solid;
-  vertical-align: middle;
-  text-align: center;
-}
+    .Front_End {
+        background-color: #6c3;
+    }
 
-.estimate-info .text, .actual-info .text {
-  font-size: 34px;
-}
+    .bolded {
+        font-weight: bold;
+    }
 
-.sub-text {
-  font-size: 12px;
-}
+    .project-info {
+        text-align: center;
+        vertical-align: middle;
+        border-width: 0 2px 2px 0;
+        border-color: black;
+        border-style: solid;
+        font-size: 25px;
+    }
 
-.project-key {
+    .estimate-info, .actual-info, .priority {
+    	width: 20%;
+        height: 75px;
+    }
 
-}
+    .estimate-info {
+        border-width: 0 0 2px 0;
+        border-color: black;
+        border-style: solid;
+        vertical-align: middle;
+        text-align: center;
+    }
 
-.right-bar div:first-child {
-  margin: -18px 0 0;
-}
+    .actual-info {
+        border-width: 0 0 2px 2px;
+        border-color: black;
+        border-style: solid;
+        vertical-align: middle;
+        text-align: center;
+    }
 
-.sub-tasks {
-  width: 100px;
-  border-width: 0 0 3px 3px;
-  border-color: black;
-  border-style: solid;
-  padding: 4px;
-}
+    .estimate-info .text, .actual-info .text {
+        font-size: 34px;
+    }
 
-.priority {
-  width: 100px;
-  border-width: 0 0 0 3px;
-  border-color: black;
-  border-style: solid;
-  text-align: center;
-  height: 70px;
-}
+    .sup-text {
+        font-size: 12px;
+    }
 
-.issue-number {
-  font-size: 45px;
-}
+    .project-key {
 
-.summary-info {
-  max-width: 210px;
-  height: 230px;
-  padding: 10px;
-}
+    }
 
-.spacer {
-  height: 30px;
-}
+    .right-bar div:first-child {
+        margin: -18px 0 0;
+    }
 
-table, th, td {
-  border-spacing: 0;
-  border-collapse: separate;
-  vertical-align: top;
-}
+    .sub-tasks {
+        width: 100px;
+        border-width: 0 0 0 2px;
+        border-color: black;
+        border-style: solid;
+        padding: 4px;
+    }
 
-table {
-  border: 3px solid black;
-  display: inline-table;
-  margin: 0 15px 15px 0;
-  width: 400px;
-  height: 380px;
-  font-family: 'Ubuntu', sans-serif;
-}
+    .priority {
+        border-width: 0 2px 2px 0;
+        border-color: black;
+        border-style: solid;
+        text-align: center;
+        padding: 4px 5px 0;
+    }
 
-.fa {
-  font-size: 3em !important;
-}
+    .issue-number {
+        font-size: 45px;
+    }
 
-.label {
-  background-color: #3b7fc4;
-  border: 2px solid #3b7fc4;
-  border-radius: 3px;
-  color: #fff;
-  display: inline-block;
-  font-size: 0.71rem;
-  font-weight: normal;
-  line-height: 0.8;
-  margin-bottom: inherit;
-  padding: 0.22222rem 0.44444rem 0.33333rem;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-}
+    .summary-info {
+        padding: 10px;
+    }
 
-.break {
-  margin: 0px;
-  line-height: 8px;
-}​
+    .spacer {
+        height: 30px;
+    }
 
-ul {
-  margin: 10px 0;
-  padding: 0 !important;
-}
+    table, th, td {
+        border-spacing: 0;
+        border-collapse: separate;
+        vertical-align: top;
+        padding: 0;
+        margin: 0;
+    }
 
-li {
-  list-style: none;
-}
+    table {
+        border: 2px solid black;
+        display: inline-table;
+        margin: 0 15px 15px 0;
+        width: 330px;
+        height: 320px;
+        font-family: 'Ubuntu', sans-serif;
+    }
 
+    .fa {
+        font-size: 3em !important;
+    }
+
+    .label {
+        background-color: #3b7fc4;
+        border: 2px solid #3b7fc4;
+        border-radius: 3px;
+        color: #fff;
+        display: inline-block;
+        font-size: 0.71rem;
+        font-weight: normal;
+        line-height: 0.8;
+        margin-bottom: inherit;
+        padding: 0.22222rem 0.44444rem 0.33333rem;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .break {
+        margin: 0px;
+        line-height: 8px;
+    }
+
+    ul {
+        margin: 10px 0;
+        padding: 0 !important;
+    }
+
+    li {
+        list-style: none;
+    }
 </style>
-<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu" />
+<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
