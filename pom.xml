@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.caplin</groupId>
     <artifactId>jacm</artifactId>
-    <version>0.4-DEVJIRA</version>
+    <version>0.5-DEVJIRA</version>
     <organization>
         <name>Caplin</name>
         <url>http://www.caplin.com/</url>
     </organization>
     <name>jira-agile-cards-plugin</name>
-    <description>JACM by Caplin, for JIRA</description>
+    <description>JIRA Agile Cards Maker, by Caplin</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>
@@ -82,7 +82,7 @@
         <dependency>
         	<groupId>com.atlassian.jira.plugins</groupId>
         	<artifactId>jira-greenhopper-plugin</artifactId>
-        	<version>${jira.version}</version>
+        	<version>6.6.0</version>
             <scope>provided</scope>
         </dependency>
         	
@@ -119,7 +119,7 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>6.0.4</jira.version>
+        <jira.version>6.3.6</jira.version>
         <amps.version>5.0.4</amps.version>
         <plugin.testrunner.version>1.2.0</plugin.testrunner.version>
         <!-- TestKit version 5.x for JIRA 5.x, 6.x for JIRA 6.x -->

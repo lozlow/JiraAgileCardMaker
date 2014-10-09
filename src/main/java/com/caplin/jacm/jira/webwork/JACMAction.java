@@ -2,44 +2,46 @@ package com.caplin.jacm.jira.webwork;
 
 import java.util.HashMap;
 
-import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.ComponentManager;
-import com.atlassian.jira.bc.issue.IssueService;
-import com.atlassian.jira.component.ComponentAccessor;
-import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 import com.atlassian.velocity.VelocityManager;
-import com.caplin.jacm.helpers.IssueHelper;
+import com.caplin.jacm.IssueFormatter;
+import com.caplin.jacm.factories.IssueFormatterFactory;
+import com.caplin.jacm.services.IssueHelperService;
 
 @SuppressWarnings("deprecation")
 public class JACMAction extends JiraWebActionSupport
 {
-    private final IssueService issueService;
-	private final CustomFieldManager customFieldManager;	
+	private static final long serialVersionUID = 1L;
 	private StringBuffer html;
 	private String issueKey;
+	private final IssueHelperService issueHelperService;
+	private final IssueFormatterFactory issueFormatterFactory;
 	
-    public JACMAction(IssueService issueService, CustomFieldManager customFieldManager) {
-    	this.issueService = issueService;
-    	this.customFieldManager = customFieldManager;
+    public JACMAction(IssueHelperService issueHelperService, IssueFormatterFactory issueFormatterFactory) {
     	this.html = new StringBuffer();
+    	this.issueHelperService = issueHelperService;
+    	this.issueFormatterFactory = issueFormatterFactory;
     }
     
     @Override
     public String execute() throws Exception {
 		VelocityManager velocityManager = ComponentManager.getInstance().getVelocityManager();
-    	User currentUser = ComponentAccessor.getJiraAuthenticationContext().getUser().getDirectoryUser();
-		long issueNumber = Long.valueOf(getHttpRequest().getParameter("id"));
-		Issue issue = issueService.getIssue(currentUser, issueNumber).getIssue();
+    	long issueNumber = Long.valueOf(getHttpRequest().getParameter("id"));
+		Issue issue = this.issueHelperService.getIssue(issueNumber);
 		
-		IssueHelper issueHelper = new IssueHelper(this.customFieldManager, issue);
+		if (issue != null) {
+			IssueFormatter issueHelper = this.issueFormatterFactory.createIssueFormatter(issue);
 
-		this.issueKey = issue.getKey();
-    	this.html.append(velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-header-view.vm", new HashMap<String, Object> ()));
-    	this.html.append(velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-single-view.vm", issueHelper.toMap()));
-    	
-    	return SUCCESS;
+			this.issueKey = issue.getKey();
+	    	this.html.append(velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-header-view.vm", new HashMap<String, Object> ()));
+	    	this.html.append(velocityManager.getBody("templates/jacm-search-view-plugin/", "agile-card-single-view.vm", issueHelper.toMap()));
+	    	
+	    	return SUCCESS;
+		} else {
+			return ERROR;
+		}
     }
     
     public String getHtml() {

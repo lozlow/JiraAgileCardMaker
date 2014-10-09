@@ -1,25 +1,26 @@
-package com.caplin.jacm.helpers;
+package com.caplin.jacm;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
-import com.caplin.jacm.functions.IssueFunctions;
 import com.caplin.jacm.functions.Utility;
+import com.caplin.jacm.helpers.CustomFieldHelper;
+import com.caplin.jacm.helpers.PriorityHelper;
+import com.caplin.jacm.services.IssueHelperService;
 
-public class IssueHelper {
+public class IssueFormatter {
 
 	private static final int NUM_SUBTASKS_TO_SHOW = 7;
 	
-	private Issue issue = null;
-	private final CustomFieldManager customFieldManager;
+	private final Issue issue;
 	private List<String> subTasks;
+	private final IssueHelperService issueHelperService;
 
-	public IssueHelper(CustomFieldManager customFieldManager, Issue issue) {
-		this.customFieldManager = customFieldManager;
+	public IssueFormatter(Issue issue, IssueHelperService issueHelperService) {
 		this.issue = issue;
+		this.issueHelperService = issueHelperService;
 	}
 
 	public String getIssueType() {
@@ -37,21 +38,21 @@ public class IssueHelper {
 
 	public Double getEstimatedStoryPoints() {
 		try {
-			return (Double) issue.getCustomFieldValue(this.customFieldManager
-				.getCustomFieldObject(CustomFieldHelper.ESTIMATED_STORY_POINTS
-						.getFieldName()));
+			return (Double) issue.getCustomFieldValue(
+					this.issueHelperService.getCustomFieldManager().getCustomFieldObject(
+							CustomFieldHelper.ESTIMATED_STORY_POINTS.getFieldName()));
 		} catch (NullPointerException e) {
-			return 0.0;
+			return null;
 		}
 	}
 
 	public Double getActualStoryPoints() {
 		try {
-			return (Double) issue.getCustomFieldValue(this.customFieldManager
-					.getCustomFieldObject(CustomFieldHelper.ACTUAL_STORY_POINTS
-							.getFieldName()));
+			return (Double) issue.getCustomFieldValue(
+					this.issueHelperService.getCustomFieldManager().getCustomFieldObject(
+							CustomFieldHelper.ACTUAL_STORY_POINTS.getFieldName()));
 		} catch (NullPointerException e) {
-			return 0.0;
+			return null;
 		}
 	}
 
@@ -60,34 +61,32 @@ public class IssueHelper {
 	}
 
 	public String getEpic() {
-		if (IssueFunctions.hasEpic(this.issue, this.customFieldManager)) {
+		if (this.issueHelperService.hasEpic(this.issue)) {
+			return this.issueHelperService.getEpicName(this.issue);
 			
-			return IssueFunctions.getEpicName(this.issue, this.customFieldManager);
+		} else if (this.issueHelperService.hasParent(this.issue)) {
+			Issue parent = this.issueHelperService.getParent(issue);
 			
-		} else if (IssueFunctions.hasParent(this.issue)) {
-			
-			if (IssueFunctions.hasEpic(IssueFunctions.getParent(this.issue), this.customFieldManager)) {
-				return IssueFunctions.getEpicName(IssueFunctions.getParent(this.issue), this.customFieldManager);
+			if (this.issueHelperService.hasEpic(parent)) {
+				return this.issueHelperService.getEpicName(this.issueHelperService.getParent(this.issue));
 			} else {
 				return "";
 			}
 			
 		} else {
-			
 			return "";
-			
 		}
 	}
 	
 	public List<String> getSubtasks() {
 		if (this.subTasks == null) {
-			this.subTasks = IssueFunctions.getSubTasks(this.issue);
+			this.subTasks = this.issueHelperService.getSubTasks(this.issue);
 		}
 		return this.subTasks;
 	}
 
 	public List<String> getSubtasksTruncated() {
-		return this.getSubtasks().subList(0, Math.min(this.getNumSubtasks(), IssueHelper.NUM_SUBTASKS_TO_SHOW));
+		return this.getSubtasks().subList(0, Math.min(this.getNumSubtasks(), IssueFormatter.NUM_SUBTASKS_TO_SHOW));
 	}
 
 	public int getNumSubtasks() {
@@ -95,9 +94,9 @@ public class IssueHelper {
 	}
 	
 	private String getRestSubtasks() {
-		if (this.getNumSubtasks() > IssueHelper.NUM_SUBTASKS_TO_SHOW) {
+		if (this.getNumSubtasks() > IssueFormatter.NUM_SUBTASKS_TO_SHOW) {
 			String retString;
-			int delta = this.getNumSubtasks() - IssueHelper.NUM_SUBTASKS_TO_SHOW;
+			int delta = this.getNumSubtasks() - IssueFormatter.NUM_SUBTASKS_TO_SHOW;
 
 			if (delta == 1) {
 				retString = "... and " + delta + " other";
@@ -106,14 +105,14 @@ public class IssueHelper {
 			}
 						
 			return retString;
+		} else {
+			return null;
 		}
-		
-		return null;
 	}
 
 	public String getParent() {
-		if (IssueFunctions.hasParent(this.issue)) {
-			Issue parent = IssueFunctions.getParent(this.issue);
+		if (this.issueHelperService.hasParent(this.issue)) {
+			Issue parent = this.issueHelperService.getParent(this.issue);
 			return parent.getKey() + ": " + parent.getSummary();
 		} else {
 			return "";

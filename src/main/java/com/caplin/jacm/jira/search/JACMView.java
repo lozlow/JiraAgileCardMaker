@@ -8,7 +8,6 @@ import java.util.Map;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Searcher;
 
-import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.IssueFactory;
 import com.atlassian.jira.issue.search.SearchException;
@@ -21,7 +20,8 @@ import com.atlassian.jira.plugin.searchrequestview.AbstractSearchRequestView;
 import com.atlassian.jira.plugin.searchrequestview.SearchRequestParams;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.jira.util.VelocityParamFactory;
-import com.caplin.jacm.helpers.IssueHelper;
+import com.caplin.jacm.IssueFormatter;
+import com.caplin.jacm.factories.IssueFormatterFactory;
 
 @SuppressWarnings("deprecation")
 public class JACMView extends AbstractSearchRequestView {
@@ -31,23 +31,22 @@ public class JACMView extends AbstractSearchRequestView {
     private final IssueFactory issueFactory;
     private final SearchProvider searchProvider;
     private final VelocityParamFactory velocityParams;
-	private final CustomFieldManager customFieldManager;
+	private final IssueFormatterFactory issueFormatterFactory;
  
     public JACMView(JiraAuthenticationContext authenticationContext, SearchProviderFactory searchProviderFactory,
             IssueFactory issueFactory, SearchProvider searchProvider, VelocityParamFactory velocityParams,
-            CustomFieldManager customFieldManager) {
+            IssueFormatterFactory issueFormatterFactory) {
         this.authenticationContext = authenticationContext;
         this.searchProviderFactory = searchProviderFactory;
         this.issueFactory = issueFactory;
         this.searchProvider = searchProvider;
         this.velocityParams = velocityParams;
-        this.customFieldManager = customFieldManager;
+        this.issueFormatterFactory = issueFormatterFactory;
     }
 	
     @Override
     public void writeSearchResults(SearchRequest searchRequest, SearchRequestParams searchRequestParams, Writer writer) throws SearchException {
         final Map<String, Object> defaultParams = this.velocityParams.getDefaultVelocityParams(authenticationContext);
-        
         final Map<String, Object> headerParams = new HashMap<String, Object> (defaultParams);
         
         try {
@@ -58,14 +57,13 @@ public class JACMView extends AbstractSearchRequestView {
             final DocumentHitCollector hitCollector = new IssueWriterHitCollector((IndexSearcher) searcher, writer, issueFactory) {
             	
             	protected void writeIssue(Issue issue, Writer writer) throws IOException {
-            		IssueHelper issueHelper = new IssueHelper(customFieldManager, issue);
+            		IssueFormatter issueHelper = issueFormatterFactory.createIssueFormatter(issue);
                     writer.write(descriptor.getHtml("single-view", issueHelper.toMap()));
                 }
             	
             };
             
             searchProvider.searchAndSort(searchRequest.getQuery(), authenticationContext.getUser(), hitCollector, searchRequestParams.getPagerFilter());
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (SearchException e) {

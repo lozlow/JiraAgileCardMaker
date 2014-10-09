@@ -5,9 +5,15 @@
     <description>${project.description}</description>
     <version>${project.version}</version>
     <vendor name="${project.organization.name}" url="${project.organization.url}"/>
-    <param name="plugin-icon">images/pluginIcon.png</param>
-    <param name="plugin-logo">images/pluginLogo.png</param>
+    <param name="plugin-icon">images/iconSmall.png</param>
+    <param name="plugin-logo">images/iconLarge.png</param>
   </plugin-info>
+  <component key="issueHelperService" name="IssueHelperService Component" class="com.caplin.jacm.services.IssueHelperService">
+    <interface>com.caplin.jacm.iface.IIssueHelperService</interface>
+  </component>
+  <component key="issueFormatterFactory" name="IssueFormatterFactory Component" class="com.caplin.jacm.factories.IssueFormatterFactory">
+    <interface>com.caplin.jacm.iface.IIssueFormatterFactory</interface>
+  </component>
   <!-- add our i18n resource -->
   <resource type="i18n" name="i18n" location="jacm"/>
   <!-- add our web resources -->
@@ -22,6 +28,7 @@
     <actions>
       <action name="com.caplin.jacm.jira.webwork.JACMAction" alias="GenerateJiraCard">
         <view name="success">/templates/jacm-webwork-plugin/jacmaction/success.vm</view>
+        <view name="error">/templates/jacm-webwork-plugin/jacmaction/error.vm</view>
       </action>
     </actions>
   </webwork1>

@@ -1,0 +1,14 @@
+<script>
+  jQuery(document).ready(function() {
+  	jQuery(document.getElementById("button-back")).click(function(e) {
+      e.preventDefault();
+      window.history.go(-1);
+  	});
+  	jQuery(document.getElementById("button-print")).click(function(e) {
+  	  e.preventDefault();
+  	  window.print();
+  	});
+  });
+</script>
+<h1>The specified issue could not be found.</h1>
+<button id="button-back" class="aui-button">Back</button>
