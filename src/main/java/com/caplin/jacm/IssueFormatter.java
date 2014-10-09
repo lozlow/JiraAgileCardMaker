@@ -74,7 +74,7 @@ public class IssueFormatter {
 			}
 			
 		} else {
-			return "";
+			return null;
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class IssueFormatter {
 			Issue parent = this.issueHelperService.getParent(this.issue);
 			return parent.getKey() + ": " + parent.getSummary();
 		} else {
-			return "";
+			return null;
 		}
 	}
 
@@ -130,14 +130,14 @@ public class IssueFormatter {
 		issueMap.put("issueType", this.getIssueType());
 		issueMap.put("projectKey", this.getProjectKey());
 		issueMap.put("projectIssueNumber", this.getProjectIssueNumber());
-		issueMap.put("estimate", Utility.emptyStrOnFalsey(this.getEstimatedStoryPoints()));
-		issueMap.put("actual", Utility.emptyStrOnFalsey(this.getActualStoryPoints()));
+		issueMap.put("estimate", Utility.or(this.getEstimatedStoryPoints(), ""));
+		issueMap.put("actual", Utility.or(this.getActualStoryPoints(), ""));
 		issueMap.put("summary", this.getSummary());
-		issueMap.put("epic", this.getEpic());
+		issueMap.put("epic", Utility.or(this.getEpic(), ""));
 		issueMap.put("subtasks", this.getSubtasksTruncated());
 		issueMap.put("numsubtasks", this.getNumSubtasks());
-		issueMap.put("restsubtasks", Utility.emptyStrOnFalsey(this.getRestSubtasks()));
-		issueMap.put("parent", this.getParent());
+		issueMap.put("restsubtasks", Utility.or(this.getRestSubtasks(), ""));
+		issueMap.put("parent", Utility.or(this.getParent(), ""));
 		issueMap.put("priority", this.getPriority());
 
 		return issueMap;
