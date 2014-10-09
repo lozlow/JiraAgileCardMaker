@@ -63,7 +63,7 @@ public class IssueHelperService implements IIssueHelperService {
     	
     	if (this.isEpic(issue)) {
     		try {
-    			//TODO
+    			//TODO Currently cannot work out a way to get issues in an Epic
 	    		//issueList = new EpicLinkManagerImpl().getIssuesInEpic(issue);    			
     			throw new NullPointerException();
     		} catch (NullPointerException e) {

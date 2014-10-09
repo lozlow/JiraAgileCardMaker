@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+
   <plugin-info>
     <description>${project.description}</description>
     <version>${project.version}</version>
@@ -8,13 +9,25 @@
     <param name="plugin-icon">images/iconSmall.png</param>
     <param name="plugin-logo">images/iconLarge.png</param>
   </plugin-info>
+  
   <component key="issueHelperService" name="IssueHelperService Component" class="com.caplin.jacm.services.IssueHelperService">
     <interface>com.caplin.jacm.iface.IIssueHelperService</interface>
   </component>
+  
   <component key="issueFormatterFactory" name="IssueFormatterFactory Component" class="com.caplin.jacm.factories.IssueFormatterFactory">
     <interface>com.caplin.jacm.iface.IIssueFormatterFactory</interface>
   </component>
+  
   <resource type="i18n" name="i18n" location="jacm"/>
+  
+  <web-resource key="jacm-web-resource" name="JACM Web Resource Plugin">
+  	<context>jacm.web-context</context>
+  	<resource type="download" name="multiple-card-styles" location="css/multiple-card-styles.css">
+    	<property key="content-type" value="text/css"/>
+  	</resource>
+  	<resource type="download" name="single-card-styles" location="css/single-card-styles.css"/>
+  </web-resource>
+  
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
@@ -24,15 +37,18 @@
       </action>
     </actions>
   </webwork1>
+  
   <web-item name="JACM Web Item" i18n-name-key="jacm-web-item.name" key="jacm-web-item" section="operations-operations" weight="1000">
     <description key="jacm-web-item.description">The JACM Web Item Plugin</description>
     <label key="jacm-web-item.label"/>
     <link linkId="jacm-web-item-link">/secure/GenerateJiraCard.jspa?id=${issue.id}</link>
   </web-item>
+  
   <search-request-view name="JACM View" i18n-name-key="jacm-view.name" key="jacm-view" class="com.caplin.jacm.jira.search.JACMView" fileExtension="html" contentType="text/html">
     <description key="jacm-view.description">The JACM View Plugin</description>
     <resource name="header" type="velocity" location="templates/jacm-search-view-plugin/agile-card-header-view.vm"/>
     <resource name="single-view" type="velocity" location="templates/jacm-search-view-plugin/agile-card-single-view.vm"/>
     <order>10</order>
   </search-request-view>
+  
 </atlassian-plugin>
