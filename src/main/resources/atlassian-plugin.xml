@@ -14,15 +14,7 @@
   <component key="issueFormatterFactory" name="IssueFormatterFactory Component" class="com.caplin.jacm.factories.IssueFormatterFactory">
     <interface>com.caplin.jacm.iface.IIssueFormatterFactory</interface>
   </component>
-  <!-- add our i18n resource -->
   <resource type="i18n" name="i18n" location="jacm"/>
-  <!-- add our web resources -->
-  <web-resource key="jacm-resources" name="jacm Web Resources">
-    <context>com.caplin.jacm</context>
-    <resource type="download" name="jacm.css" location="/css/jacm.css"/>
-    <resource type="download" name="jacm.js" location="/js/jacm.js"/>
-    <resource type="download" name="images/" location="/images"/>
-  </web-resource>
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
