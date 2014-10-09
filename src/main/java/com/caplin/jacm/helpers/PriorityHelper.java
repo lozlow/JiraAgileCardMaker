@@ -1,6 +1,6 @@
-package com.caplin.helpers;
+package com.caplin.jacm.helpers;
 
-import com.caplin.functions.Utility;
+import com.caplin.jacm.functions.Utility;
 
 public enum PriorityHelper {
 	

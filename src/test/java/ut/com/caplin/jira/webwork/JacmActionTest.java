@@ -3,7 +3,8 @@ package ut.com.caplin.jira.webwork;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.caplin.jira.webwork.JACMAction;
+
+import com.caplin.jacm.jira.webwork.JACMAction;
 
 import static org.mockito.Mockito.*;
 

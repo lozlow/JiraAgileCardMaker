@@ -3,7 +3,8 @@ package ut.com.caplin.jira.search;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.caplin.jira.search.JACMView;
+
+import com.caplin.jacm.jira.search.JACMView;
 
 import static org.mockito.Mockito.*;
 

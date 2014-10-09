@@ -99,6 +99,17 @@
         border-style: solid;
         padding: 4px;
     }
+    
+    .sub-task-list {
+    	white-space: nowrap;
+    	direction: rtl;
+    	text-align: left;
+    }
+    
+    .sub-task-list li {
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    }
 
     .priority {
         border-width: 0 2px 2px 0;
@@ -135,6 +146,7 @@
         width: 330px;
         height: 320px;
         font-family: 'Ubuntu', sans-serif;
+        table-layout: fixed;
     }
 
     .fa {

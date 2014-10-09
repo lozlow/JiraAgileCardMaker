@@ -36,7 +36,7 @@
 	        Sub-tasks <span class="bolded">($!numsubtasks)</span>
         	#if ($!numsubtasks != 0)
 	        	<br />
-	        	<ul>
+	        	<ul class="sub-task-list">
 	        	#foreach ($task in $!subtasks)
 	        		<li>$!task</li>
 	        	#end

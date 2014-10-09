@@ -1,4 +1,4 @@
-package com.caplin.functions;
+package com.caplin.jacm.functions;
 
 public class Utility {
 

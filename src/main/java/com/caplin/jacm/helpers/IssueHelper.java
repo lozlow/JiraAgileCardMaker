@@ -1,4 +1,4 @@
-package com.caplin.helpers;
+package com.caplin.jacm.helpers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
-import com.caplin.functions.Utility;
-import com.caplin.functions.IssueFunctions;
+import com.caplin.jacm.functions.IssueFunctions;
+import com.caplin.jacm.functions.Utility;
 
 public class IssueHelper {
 

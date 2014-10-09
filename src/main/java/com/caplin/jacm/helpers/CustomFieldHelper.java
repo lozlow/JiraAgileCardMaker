@@ -1,4 +1,4 @@
-package com.caplin.helpers;
+package com.caplin.jacm.helpers;
 
 public enum CustomFieldHelper {
 

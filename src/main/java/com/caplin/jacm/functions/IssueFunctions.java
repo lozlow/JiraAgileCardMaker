@@ -1,4 +1,4 @@
-package com.caplin.functions;
+package com.caplin.jacm.functions;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
-import com.caplin.helpers.CustomFieldHelper;
+import com.caplin.jacm.helpers.CustomFieldHelper;
 
 public class IssueFunctions {
 	

@@ -1,4 +1,4 @@
-package com.caplin.jira.search;
+package com.caplin.jacm.jira.search;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -21,8 +21,9 @@ import com.atlassian.jira.plugin.searchrequestview.AbstractSearchRequestView;
 import com.atlassian.jira.plugin.searchrequestview.SearchRequestParams;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.jira.util.VelocityParamFactory;
-import com.caplin.helpers.IssueHelper;
+import com.caplin.jacm.helpers.IssueHelper;
 
+@SuppressWarnings("deprecation")
 public class JACMView extends AbstractSearchRequestView {
 	
 	private final JiraAuthenticationContext authenticationContext;
@@ -43,8 +44,7 @@ public class JACMView extends AbstractSearchRequestView {
         this.customFieldManager = customFieldManager;
     }
 	
-    @SuppressWarnings("deprecation")
-	@Override
+    @Override
     public void writeSearchResults(SearchRequest searchRequest, SearchRequestParams searchRequestParams, Writer writer) throws SearchException {
         final Map<String, Object> defaultParams = this.velocityParams.getDefaultVelocityParams(authenticationContext);
         

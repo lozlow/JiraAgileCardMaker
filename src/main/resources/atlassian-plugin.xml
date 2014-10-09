@@ -20,7 +20,7 @@
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>
     <actions>
-      <action name="com.caplin.jira.webwork.JACMAction" alias="GenerateJiraCard">
+      <action name="com.caplin.jacm.jira.webwork.JACMAction" alias="GenerateJiraCard">
         <view name="success">/templates/jacm-webwork-plugin/jacmaction/success.vm</view>
       </action>
     </actions>
@@ -30,7 +30,7 @@
     <label key="jacm-web-item.label"/>
     <link linkId="jacm-web-item-link">/secure/GenerateJiraCard.jspa?id=${issue.id}</link>
   </web-item>
-  <search-request-view name="JACM View" i18n-name-key="jacm-view.name" key="jacm-view" class="com.caplin.jira.search.JACMView" fileExtension="html" contentType="text/html">
+  <search-request-view name="JACM View" i18n-name-key="jacm-view.name" key="jacm-view" class="com.caplin.jacm.jira.search.JACMView" fileExtension="html" contentType="text/html">
     <description key="jacm-view.description">The JACM View Plugin</description>
     <resource name="header" type="velocity" location="templates/jacm-search-view-plugin/agile-card-header-view.vm"/>
     <resource name="single-view" type="velocity" location="templates/jacm-search-view-plugin/agile-card-single-view.vm"/>
