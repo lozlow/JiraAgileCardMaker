@@ -9,3 +9,5 @@
   - ~~Remove other un-used files: tests, etc.~~
 * v0.9
   - Sort out those damned resources
+* v1.0
+  - Stable release
