@@ -18,6 +18,10 @@
     <interface>com.caplin.jacm.iface.IIssueFormatterFactory</interface>
   </component>
   
+  <component key="issueRegistryService" name="IssueRegistryService Component" class="com.caplin.jacm.services.IssueRegistryService">
+    <interface>com.caplin.jacm.iface.IIssueRegistryService</interface>
+  </component>
+  
   <resource type="i18n" name="i18n" location="jacm"/>
   
   <web-resource key="jacm-web-resource" name="JACM Web Resource Plugin">

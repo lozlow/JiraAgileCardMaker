@@ -2,7 +2,6 @@ package com.caplin.jacm.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.bc.issue.IssueService;
@@ -55,10 +54,18 @@ public class IssueHelperService implements IIssueHelperService {
     		return parent;
     	}
     }
+	
+	@Override
+	public final boolean hasSubTasks(Issue issue) {
+    	if (this.getSubTasks(issue).size() > 0) {
+    		return true;
+    	} else {
+			return false;
+    	}
+	}
     
 	@Override
-	public final List<String> getSubTasks(Issue issue) {
-    	final List<String> taskList = new ArrayList<String> ();
+	public final Collection<Issue> getSubTasks(Issue issue) {
     	Collection<Issue> issueList;
     	
     	if (this.isEpic(issue)) {
@@ -73,11 +80,7 @@ public class IssueHelperService implements IIssueHelperService {
     		issueList = issue.getSubTaskObjects();
     	}
     	
-    	for (Issue i: issueList) {
-    		taskList.add(i.getKey());
-    	}
-    	
-		return taskList;
+		return issueList;
 	}
 	
 	@Override
@@ -111,11 +114,6 @@ public class IssueHelperService implements IIssueHelperService {
 		} else {
 			return epicIssue.getSummary();
 		}
-	}
-
-	@Override
-	public CustomFieldManager getCustomFieldManager() {
-		return this.customFieldManager;
 	}
 
 }

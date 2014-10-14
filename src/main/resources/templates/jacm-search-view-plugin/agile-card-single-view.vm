@@ -12,22 +12,26 @@
         	<i class="fa $!priority.getClassName()" style="color: $!priority.getColour();"></i>
         </td>
         <td colspan="2" class="estimate-info">
-        	#if ($!estimate != "")
-        		<span class="sup-text">Estimate</span>
-	        	<br />
-	        	<span class="text bolded">$!estimate</span>
-        	#else
-        		<span class="sup-text">No Estimate</span>
-        	#end
+        	<span class="sup-text">Estimate</span>
+        	<br />
+        	<span class="text bolded">
+        		#if ($!estimate != "")
+        			$!estimate
+        		#else
+        			&nbsp;
+        		#end
+        	</span>
         </td>
         <td class="actual-info">
-        	#if ($!actual != "")
-        		<span class="sup-text">Actual</span>
-	        	<br />
-	        	<span class="text bolded">$!actual</span>
-        	#else
-        		<span class="sup-text">No Actual</span>
-        	#end
+    		<span class="sup-text">Actual</span>
+        	<br />
+        	<span class="text bolded">
+        		#if ($!actual != "")
+        			$!actual
+        		#else
+        			&nbsp;
+        		#end
+        	</span>
         </td>
       </tr>
       <tr>

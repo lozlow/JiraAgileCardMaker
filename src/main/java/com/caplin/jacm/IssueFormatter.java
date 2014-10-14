@@ -1,9 +1,11 @@
 package com.caplin.jacm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.atlassian.jira.issue.CustomFieldManager;
 import com.atlassian.jira.issue.Issue;
 import com.caplin.jacm.functions.Utility;
 import com.caplin.jacm.helpers.CustomFieldHelper;
@@ -17,50 +19,52 @@ public class IssueFormatter {
 	private final Issue issue;
 	private List<String> subTasks;
 	private final IssueHelperService issueHelperService;
+	private final CustomFieldManager customFieldManager;
 
-	public IssueFormatter(Issue issue, IssueHelperService issueHelperService) {
+	public IssueFormatter(Issue issue, IssueHelperService issueHelperService, CustomFieldManager customFieldManager) {
 		this.issue = issue;
 		this.issueHelperService = issueHelperService;
+		this.customFieldManager = customFieldManager;
 	}
 
-	public String getIssueType() {
+	private String getIssueType() {
 		return this.issue.getIssueTypeObject().getName();
 	}
 
-	public String getProjectKey() {
+	private String getProjectKey() {
 		return this.issue.getProjectObject().getKey();
 	}
 
-	public Long getProjectIssueNumber() {
+	private Long getProjectIssueNumber() {
 		int startLoc = this.issue.getKey().indexOf("-");
 		return Long.valueOf(this.issue.getKey().substring(startLoc + 1));
 	}
 
-	public Double getEstimatedStoryPoints() {
+	private Double getEstimatedStoryPoints() {
 		try {
 			return (Double) issue.getCustomFieldValue(
-					this.issueHelperService.getCustomFieldManager().getCustomFieldObject(
+					this.customFieldManager.getCustomFieldObject(
 							CustomFieldHelper.ESTIMATED_STORY_POINTS.getFieldName()));
 		} catch (NullPointerException e) {
 			return null;
 		}
 	}
 
-	public Double getActualStoryPoints() {
+	private Double getActualStoryPoints() {
 		try {
 			return (Double) issue.getCustomFieldValue(
-					this.issueHelperService.getCustomFieldManager().getCustomFieldObject(
+					this.customFieldManager.getCustomFieldObject(
 							CustomFieldHelper.ACTUAL_STORY_POINTS.getFieldName()));
 		} catch (NullPointerException e) {
 			return null;
 		}
 	}
 
-	public String getSummary() {
+	private String getSummary() {
 		return this.issue.getSummary();
 	}
 
-	public String getEpic() {
+	private String getEpic() {
 		if (this.issueHelperService.hasEpic(this.issue)) {
 			return this.issueHelperService.getEpicName(this.issue);
 			
@@ -78,39 +82,38 @@ public class IssueFormatter {
 		}
 	}
 	
-	public List<String> getSubtasks() {
+	private List<String> getSubtasks() {
 		if (this.subTasks == null) {
-			this.subTasks = this.issueHelperService.getSubTasks(this.issue);
+			this.subTasks = new ArrayList<String> ();
+			
+			for (Issue subTask: this.issueHelperService.getSubTasks(this.issue)) {
+				this.subTasks.add(subTask.getKey());
+			}
 		}
 		return this.subTasks;
 	}
 
-	public List<String> getSubtasksTruncated() {
+	private List<String> getSubtasksTruncated() {
 		return this.getSubtasks().subList(0, Math.min(this.getNumSubtasks(), IssueFormatter.NUM_SUBTASKS_TO_SHOW));
 	}
 
-	public int getNumSubtasks() {
+	private int getNumSubtasks() {
 		return this.getSubtasks().size();
 	}
 	
 	private String getRestSubtasks() {
 		if (this.getNumSubtasks() > IssueFormatter.NUM_SUBTASKS_TO_SHOW) {
-			String retString;
 			int delta = this.getNumSubtasks() - IssueFormatter.NUM_SUBTASKS_TO_SHOW;
 
-			if (delta == 1) {
-				retString = "... and " + delta + " other";
-			} else {
-				retString = "... and " + delta + " others";
-			}
-						
+			String retString = "... and " + delta + ((delta == 1) ? "other" : "others");
+
 			return retString;
 		} else {
 			return null;
 		}
 	}
 
-	public String getParent() {
+	private String getParent() {
 		if (this.issueHelperService.hasParent(this.issue)) {
 			Issue parent = this.issueHelperService.getParent(this.issue);
 			return parent.getKey() + ": " + parent.getSummary();
@@ -119,7 +122,7 @@ public class IssueFormatter {
 		}
 	}
 
-	public PriorityHelper getPriority() {
+	private PriorityHelper getPriority() {
 		return PriorityHelper.getPriorityFromString(this.issue
 				.getPriorityObject().getName());
 	}

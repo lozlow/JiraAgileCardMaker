@@ -58,26 +58,22 @@
     .estimate-info, .actual-info, .priority {
     	width: 20%;
         height: 75px;
+        border-color: black;
+        border-style: solid;
+        vertical-align: middle;
+        text-align: center;
     }
 
     .estimate-info {
         border-width: 0 0 2px 0;
-        border-color: black;
-        border-style: solid;
-        vertical-align: middle;
-        text-align: center;
     }
 
     .actual-info {
         border-width: 0 0 2px 2px;
-        border-color: black;
-        border-style: solid;
-        vertical-align: middle;
-        text-align: center;
     }
 
     .estimate-info .text, .actual-info .text {
-        font-size: 34px;
+        font-size: 40px;
     }
 
     .sup-text {
@@ -142,7 +138,7 @@
     table {
         border: 2px solid black;
         display: inline-table;
-        margin: 0 15px 15px 0;
+        margin: 0 0 3px 0;
         width: 330px;
         height: 320px;
         font-family: 'Ubuntu', sans-serif;
@@ -183,6 +179,12 @@
     li {
         list-style: none;
     }
+</style>
+<style media="print">
+	body {
+	  margin: 0;
+	  padding: 0;
+	}
 </style>
 <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
 <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
