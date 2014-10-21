@@ -48,11 +48,7 @@ public class IssueHelperService implements IIssueHelperService {
 	@Override
 	public Issue getParent(Issue issue) {
     	Issue parent = issue.getParentObject();
-    	if (parent == null) {
-    		return null;
-    	} else {
-    		return parent;
-    	}
+    	return parent;
     }
 	
 	@Override

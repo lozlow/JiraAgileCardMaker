@@ -1,3 +1,11 @@
+#if ($!numsubtasks == 0)
+#set($spacerColSpan = 4)
+#set($summaryColSpan = 5)
+#else
+#set($spacerColSpan = 2)
+#set($summaryColSpan = 3)
+#end
+
   <table>
     <tbody>
       <tr>
@@ -35,10 +43,10 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="spacer">&nbsp;</td>
+        <td colspan="$spacerColSpan" class="spacer">&nbsp;</td>
+        #if ($!numsubtasks != 0)
         <td rowspan="2" colspan="2" class="sub-tasks">
 	        Sub-tasks <span class="bolded">($!numsubtasks)</span>
-        	#if ($!numsubtasks != 0)
 	        	<br />
 	        	<ul class="sub-task-list">
 	        	#foreach ($task in $!subtasks)
@@ -46,13 +54,12 @@
 	        	#end
 	        	</ul>
 	        	$!restsubtasks
-	        #else 
-	        	&nbsp;
-	        #end
+	        
         </td>
+        #end
       </tr>
       <tr>
-        <td colspan="3" class="summary-info">
+        <td colspan="$summaryColSpan" class="summary-info">
         	#if ($!epic != "")
         		<span class="epic label">$!epic</span>
         		<p class="break">&nbsp;</p>
