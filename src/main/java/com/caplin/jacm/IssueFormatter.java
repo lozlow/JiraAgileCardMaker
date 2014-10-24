@@ -15,6 +15,9 @@ import com.caplin.jacm.services.IssueHelperService;
 public class IssueFormatter {
 
 	private static final int NUM_SUBTASKS_TO_SHOW = 7;
+	private static final int NUM_SUMMARY_CHARS_TO_SHOW_NO_SUBTASKS = 370;
+	private static final int NUM_SUMMARY_CHARS_TO_SHOW_WHEN_SUBTASKS = 255;
+	private static final String TRUNCATE_STR = "...";
 	
 	private final Issue issue;
 	private List<String> subTasks;
@@ -61,7 +64,28 @@ public class IssueFormatter {
 	}
 
 	private String getSummary() {
-		return this.issue.getSummary();
+		int maxLen;
+		if (this.issueHelperService.hasSubTasks(this.issue)) {
+			maxLen = IssueFormatter.NUM_SUMMARY_CHARS_TO_SHOW_WHEN_SUBTASKS;
+		} else {
+			maxLen = IssueFormatter.NUM_SUMMARY_CHARS_TO_SHOW_NO_SUBTASKS;
+		}
+		maxLen = maxLen - this.getParent().length() - IssueFormatter.TRUNCATE_STR.length();
+		return this.truncateStringToLength(this.issue.getSummary(), maxLen);
+	}
+	
+	private String truncateStringToLength(String str, int toLen) {
+		String truncatedStr;
+		if (str.length() <= toLen) {
+			return str;
+		} else {
+			truncatedStr = str.substring(0, toLen - 1);
+			int lastSpaceLoc = truncatedStr.lastIndexOf(" ");
+			truncatedStr.substring(0, lastSpaceLoc);
+			
+			truncatedStr = truncatedStr + IssueFormatter.TRUNCATE_STR;
+		}
+		return truncatedStr;
 	}
 
 	private String getEpic() {
@@ -118,7 +142,7 @@ public class IssueFormatter {
 			Issue parent = this.issueHelperService.getParent(this.issue);
 			return parent.getKey() + ": " + parent.getSummary();
 		} else {
-			return null;
+			return "";
 		}
 	}
 
@@ -140,7 +164,7 @@ public class IssueFormatter {
 		issueMap.put("subtasks", this.getSubtasksTruncated());
 		issueMap.put("numsubtasks", this.getNumSubtasks());
 		issueMap.put("restsubtasks", Utility.or(this.getRestSubtasks(), ""));
-		issueMap.put("parent", Utility.or(this.getParent(), ""));
+		issueMap.put("parent", this.getParent());
 		issueMap.put("priority", this.getPriority());
 
 		return issueMap;
