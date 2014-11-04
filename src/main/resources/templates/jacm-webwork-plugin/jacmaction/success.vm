@@ -6,8 +6,10 @@
       window.history.go(-1);
   	});
   	jQuery(document.getElementById("button-print")).click(function(e) {
-  	  e.preventDefault();
-  	  window.print();
+      e.preventDefault();
+      jQuery('link[rel=stylesheet]').not('.required').attr('disabled', 'disabled');
+      window.print();
+      jQuery('link[rel=stylesheet]').removeAttr('disabled');
   	});
   });
 </script>

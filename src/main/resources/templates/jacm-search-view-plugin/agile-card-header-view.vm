@@ -186,5 +186,5 @@
 	  padding: 0;
 	}
 </style>
-<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
-<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
+<link type="text/css" class="required" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+<link type="text/css" class="required" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
