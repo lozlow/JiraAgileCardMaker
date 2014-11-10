@@ -62,7 +62,15 @@
         border-style: solid;
         vertical-align: middle;
         text-align: center;
+        position: relative;
     }
+    
+    .estimate-info .sup-text, .actual-info .sup-text, .priority .sup-text {
+    	width: 100%;
+    	position: absolute;
+    	top: 4px;
+   		left: 0px;
+	}
 
     .estimate-info {
         border-width: 0 0 2px 0;
@@ -151,19 +159,16 @@
 
     .label {
         background-color: #3b7fc4;
-        border: 2px solid #3b7fc4;
-        border-radius: 3px;
-        color: #fff;
-        display: inline-block;
-        font-size: 0.71rem;
-        font-weight: normal;
-        line-height: 0.8;
-        margin-bottom: inherit;
-        padding: 0.22222rem 0.44444rem 0.33333rem;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        white-space: nowrap;
+		border: 2px solid #3b7fc4;
+		border-radius: 3px;
+		color: #fff;
+		display: inline-block;
+		font-size: 0.71rem;
+		font-weight: normal;
+		line-height: 1.1;
+		position: relative;
+		padding: 1px 4px;
+		text-decoration: none;
     }
 
     .break {
@@ -185,6 +190,28 @@
 	  margin: 0;
 	  padding: 0;
 	}
+	div {
+	  margin: 2px !important;
+	}
 </style>
 <link type="text/css" class="required" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
 <link type="text/css" class="required" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu"/>
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+  var jQuery2 = jQuery;
+  jQuery.noConflict(true);
+  
+  jQuery2(document).ready(function() {
+  	jQuery2('.estimate-info .text, .actual-info .text').each(function() {
+  		var parentWidth = parseInt(jQuery2(this).parent().width());
+  		var spanWidth = parseInt(jQuery2(this).width());
+  		
+  		while (spanWidth > parentWidth) {
+  			var fontSize = parseInt(jQuery2(this).css("font-size"));
+  			
+  			jQuery2(this).css({fontSize: fontSize - 1});
+  			spanWidth = jQuery2(this).width();
+  		} 
+  	});
+  });
+</script>

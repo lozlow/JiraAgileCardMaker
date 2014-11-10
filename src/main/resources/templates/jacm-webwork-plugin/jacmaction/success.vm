@@ -7,9 +7,11 @@
   	});
   	jQuery(document.getElementById("button-print")).click(function(e) {
       e.preventDefault();
+      jQuery('${h}header, ${h}controls, ${h}footer').hide();
       jQuery('link[rel=stylesheet]').not('.required').attr('disabled', 'disabled');
       window.print();
       jQuery('link[rel=stylesheet]').removeAttr('disabled');
+      jQuery('${h}header, ${h}controls, ${h}footer').show();
   	});
   });
 </script>
@@ -19,7 +21,7 @@ body {
 }
 
 ${h}header, ${h}controls, ${h}footer {
-  display: none !important;
+  /* display: none !important; */
 }
 </style>
 <div style="margin: 10px 0 0 25px; display: inline-block">

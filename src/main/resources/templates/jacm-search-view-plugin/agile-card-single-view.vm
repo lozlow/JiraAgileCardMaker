@@ -6,7 +6,7 @@
 #set($summaryColSpan = 3)
 #end
 
-  <table>
+  <table class="$!tableClass">
     <tbody>
       <tr>
         <td rowspan="2" class="project-info $!issueType">
@@ -15,12 +15,12 @@
           <span class="issue-number">$!projectIssueNumber</span>
         </td>
         <td class="priority">
-        	<span class="sup-text">$!priority.getPriorityName()</span>
+        	<div class="sup-text">$!priority.getPriorityName()</div>
         	<br />
         	<i class="fa $!priority.getClassName()" style="color: $!priority.getColour();"></i>
         </td>
         <td colspan="2" class="estimate-info">
-        	<span class="sup-text">Estimate</span>
+        	<div class="sup-text">Estimate</div>
         	<br />
         	<span class="text bolded">
         		#if ($!estimate != "")
@@ -31,7 +31,7 @@
         	</span>
         </td>
         <td class="actual-info">
-    		<span class="sup-text">Actual</span>
+    		<div class="sup-text">Actual</div>
         	<br />
         	<span class="text bolded">
         		#if ($!actual != "")

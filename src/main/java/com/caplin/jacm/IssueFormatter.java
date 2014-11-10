@@ -15,16 +15,17 @@ import com.caplin.jacm.services.IssueHelperService;
 public class IssueFormatter {
 
 	private static final int NUM_SUBTASKS_TO_SHOW = 7;
-	private static final int NUM_SUMMARY_CHARS_TO_SHOW_NO_SUBTASKS = 370;
-	private static final int NUM_SUMMARY_CHARS_TO_SHOW_WHEN_SUBTASKS = 255;
+	private static final int NUM_SUMMARY_CHARS_TO_SHOW_NO_SUBTASKS = 345;
+	private static final int NUM_SUMMARY_CHARS_TO_SHOW_WHEN_SUBTASKS = 240;
 	private static final String TRUNCATE_STR = "...";
-	
+
 	private final Issue issue;
 	private List<String> subTasks;
 	private final IssueHelperService issueHelperService;
 	private final CustomFieldManager customFieldManager;
 
-	public IssueFormatter(Issue issue, IssueHelperService issueHelperService, CustomFieldManager customFieldManager) {
+	public IssueFormatter(Issue issue, IssueHelperService issueHelperService,
+			CustomFieldManager customFieldManager) {
 		this.issue = issue;
 		this.issueHelperService = issueHelperService;
 		this.customFieldManager = customFieldManager;
@@ -43,24 +44,39 @@ public class IssueFormatter {
 		return Long.valueOf(this.issue.getKey().substring(startLoc + 1));
 	}
 
-	private Double getEstimatedStoryPoints() {
+	private String getEstimatedStoryPoints() {
+		Double estimateStoryPoints;
+		
 		try {
-			return (Double) issue.getCustomFieldValue(
-					this.customFieldManager.getCustomFieldObject(
-							CustomFieldHelper.ESTIMATED_STORY_POINTS.getFieldName()));
+			estimateStoryPoints = (Double) issue.getCustomFieldValue(this.customFieldManager
+							.getCustomFieldObject(CustomFieldHelper.ESTIMATED_STORY_POINTS
+									.getFieldName()));
 		} catch (NullPointerException e) {
 			return null;
 		}
+		
+		String estimateStoryPointsStr = Double.toString(estimateStoryPoints);
+		estimateStoryPointsStr.replace(".0", "");
+		
+		return estimateStoryPointsStr;
 	}
 
-	private Double getActualStoryPoints() {
+	private String getActualStoryPoints() {
+		Double actualStoryPoints;
+		
 		try {
-			return (Double) issue.getCustomFieldValue(
-					this.customFieldManager.getCustomFieldObject(
-							CustomFieldHelper.ACTUAL_STORY_POINTS.getFieldName()));
+			actualStoryPoints = (Double) issue
+					.getCustomFieldValue(this.customFieldManager
+							.getCustomFieldObject(CustomFieldHelper.ACTUAL_STORY_POINTS
+									.getFieldName()));
 		} catch (NullPointerException e) {
 			return null;
 		}
+		
+		String actualStoryPointsStr = Double.toString(actualStoryPoints);
+		actualStoryPointsStr.replace(".0", "");
+		
+		return actualStoryPointsStr;
 	}
 
 	private String getSummary() {
@@ -70,10 +86,11 @@ public class IssueFormatter {
 		} else {
 			maxLen = IssueFormatter.NUM_SUMMARY_CHARS_TO_SHOW_NO_SUBTASKS;
 		}
-		maxLen = maxLen - this.getParent().length() - IssueFormatter.TRUNCATE_STR.length();
+		maxLen = maxLen - this.getParent().length()
+				- IssueFormatter.TRUNCATE_STR.length();
 		return this.truncateStringToLength(this.issue.getSummary(), maxLen);
 	}
-	
+
 	private String truncateStringToLength(String str, int toLen) {
 		String truncatedStr;
 		if (str.length() <= toLen) {
@@ -82,7 +99,7 @@ public class IssueFormatter {
 			truncatedStr = str.substring(0, toLen - 1);
 			int lastSpaceLoc = truncatedStr.lastIndexOf(" ");
 			truncatedStr.substring(0, lastSpaceLoc);
-			
+
 			truncatedStr = truncatedStr + IssueFormatter.TRUNCATE_STR;
 		}
 		return truncatedStr;
@@ -91,26 +108,29 @@ public class IssueFormatter {
 	private String getEpic() {
 		if (this.issueHelperService.hasEpic(this.issue)) {
 			return this.issueHelperService.getEpicName(this.issue);
-			
+
 		} else if (this.issueHelperService.hasParent(this.issue)) {
 			Issue parent = this.issueHelperService.getParent(issue);
-			
+
 			if (this.issueHelperService.hasEpic(parent)) {
-				return this.issueHelperService.getEpicName(this.issueHelperService.getParent(this.issue));
+				return this.issueHelperService
+						.getEpicName(this.issueHelperService
+								.getParent(this.issue));
 			} else {
 				return "";
 			}
-			
+
 		} else {
 			return null;
 		}
 	}
-	
+
 	private List<String> getSubtasks() {
 		if (this.subTasks == null) {
-			this.subTasks = new ArrayList<String> ();
-			
-			for (Issue subTask: this.issueHelperService.getSubTasks(this.issue)) {
+			this.subTasks = new ArrayList<String>();
+
+			for (Issue subTask : this.issueHelperService
+					.getSubTasks(this.issue)) {
 				this.subTasks.add(subTask.getKey());
 			}
 		}
@@ -118,18 +138,23 @@ public class IssueFormatter {
 	}
 
 	private List<String> getSubtasksTruncated() {
-		return this.getSubtasks().subList(0, Math.min(this.getNumSubtasks(), IssueFormatter.NUM_SUBTASKS_TO_SHOW));
+		return this.getSubtasks().subList(
+				0,
+				Math.min(this.getNumSubtasks(),
+						IssueFormatter.NUM_SUBTASKS_TO_SHOW));
 	}
 
 	private int getNumSubtasks() {
 		return this.getSubtasks().size();
 	}
-	
+
 	private String getRestSubtasks() {
 		if (this.getNumSubtasks() > IssueFormatter.NUM_SUBTASKS_TO_SHOW) {
-			int delta = this.getNumSubtasks() - IssueFormatter.NUM_SUBTASKS_TO_SHOW;
+			int delta = this.getNumSubtasks()
+					- IssueFormatter.NUM_SUBTASKS_TO_SHOW;
 
-			String retString = "... and " + delta + ((delta == 1) ? "other" : "others");
+			String retString = "... and " + delta
+					+ ((delta == 1) ? "other" : "others");
 
 			return retString;
 		} else {
@@ -165,11 +190,10 @@ public class IssueFormatter {
 		issueMap.put("numsubtasks", this.getNumSubtasks());
 		issueMap.put("restsubtasks", Utility.or(this.getRestSubtasks(), ""));
 		issueMap.put("parent", this.getParent());
+		issueMap.put("tableClass", (this.getParent().equals("")) ? "js-parent-task" : "js-sub-task");
 		issueMap.put("priority", this.getPriority());
 
 		return issueMap;
 	}
-
-	
 
 }
