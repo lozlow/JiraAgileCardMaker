@@ -46,36 +46,35 @@ public class IssueFormatter {
 
 	private String getEstimatedStoryPoints() {
 		Double estimateStoryPoints;
-		
+		String estimateStoryPointsStr;
+
 		try {
-			estimateStoryPoints = (Double) issue.getCustomFieldValue(this.customFieldManager
+			estimateStoryPoints = (Double) issue
+					.getCustomFieldValue(this.customFieldManager
 							.getCustomFieldObject(CustomFieldHelper.ESTIMATED_STORY_POINTS
 									.getFieldName()));
+			estimateStoryPointsStr = Double.toString(estimateStoryPoints).replace(".0", "");
 		} catch (NullPointerException e) {
 			return null;
 		}
-		
-		String estimateStoryPointsStr = Double.toString(estimateStoryPoints);
-		estimateStoryPointsStr.replace(".0", "");
-		
+
 		return estimateStoryPointsStr;
 	}
 
 	private String getActualStoryPoints() {
 		Double actualStoryPoints;
-		
+		String actualStoryPointsStr;
+
 		try {
 			actualStoryPoints = (Double) issue
 					.getCustomFieldValue(this.customFieldManager
 							.getCustomFieldObject(CustomFieldHelper.ACTUAL_STORY_POINTS
 									.getFieldName()));
+			actualStoryPointsStr = Double.toString(actualStoryPoints).replace(".0", "");
 		} catch (NullPointerException e) {
 			return null;
 		}
-		
-		String actualStoryPointsStr = Double.toString(actualStoryPoints);
-		actualStoryPointsStr.replace(".0", "");
-		
+
 		return actualStoryPointsStr;
 	}
 
@@ -190,7 +189,9 @@ public class IssueFormatter {
 		issueMap.put("numsubtasks", this.getNumSubtasks());
 		issueMap.put("restsubtasks", Utility.or(this.getRestSubtasks(), ""));
 		issueMap.put("parent", this.getParent());
-		issueMap.put("tableClass", (this.getParent().equals("")) ? "js-parent-task" : "js-sub-task");
+		issueMap.put("tableClass",
+				(this.getParent().equals("")) ? "js-parent-task"
+						: "js-sub-task");
 		issueMap.put("priority", this.getPriority());
 
 		return issueMap;
