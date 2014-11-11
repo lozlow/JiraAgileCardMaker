@@ -83,6 +83,8 @@ public class JACMView extends AbstractSearchRequestView {
         } catch (SearchException e) {
             throw new RuntimeException(e);
         }
+        
+        this.issueRegisterService.clearRegisteredIssues();
     }
     
     private void writeIssue(Issue issue, Writer writer) throws IOException {
