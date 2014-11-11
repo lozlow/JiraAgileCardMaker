@@ -7,5 +7,8 @@
   - ~~Remove extraneous objects~~
 * v0.8
   - ~~Remove other un-used files: tests, etc.~~
-* v0.9
   - Sort out those damned resources
+* v0.9
+  - Integrate with Geenhopper's sprint planning board
+* v1.0
+  - Stable release
