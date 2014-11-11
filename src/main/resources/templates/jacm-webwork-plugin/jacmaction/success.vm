@@ -13,6 +13,13 @@
       jQuery('link[rel=stylesheet]').removeAttr('disabled');
       jQuery('${h}header, ${h}controls, ${h}footer').show();
   	});
+  	jQuery(document.getElementById("checkbox-display-child-issues")).on('change', function() {
+  		if (this.checked) {
+  			jQuery('.js-sub-task').show();
+  		} else {
+  			jQuery('.js-sub-task').hide();
+  		}
+  	});
   });
 </script>
 <style media="print">
@@ -27,8 +34,9 @@ ${h}header, ${h}controls, ${h}footer {
 <div style="margin: 10px 0 0 25px; display: inline-block">
   <div id="controls">
     <h1>Agile card for $action.getIssueKey()</h1>
-    <div style="float: right; margin: 0 15px 10px;">
+    <div style="margin: 5px 5px 10px 0px; border: 1px dotted #aaa; padding: 10px; display: inline-block;">
       <button id="button-back" class="aui-button">Back</button><button id="button-print" class="aui-button aui-button-primary">Print</button>
+      <input id="checkbox-display-child-issues" type="checkbox" checked="checked">Show child issues</input>
   	</div>
   </div>
   $action.getHtml()

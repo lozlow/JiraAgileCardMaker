@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.caplin</groupId>
     <artifactId>jacm</artifactId>
-    <version>0.8.3-DEVJIRA</version>
+    <version>0.8.4-DEVJIRA</version>
     <organization>
         <name>Caplin</name>
         <url>http://www.caplin.com/</url>
