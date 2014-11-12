@@ -18,19 +18,7 @@
     <interface>com.caplin.jacm.iface.IIssueFormatterFactory</interface>
   </component>
   
-  <component key="issueRegistryService" name="IssueRegistryService Component" class="com.caplin.jacm.services.IssueRegistryService">
-    <interface>com.caplin.jacm.iface.IIssueRegistryService</interface>
-  </component>
-  
   <resource type="i18n" name="i18n" location="jacm"/>
-  
-  <web-resource key="jacm-web-resource" name="JACM Web Resource Plugin">
-  	<context>jacm.web-context</context>
-  	<resource type="download" name="multiple-card-styles" location="css/multiple-card-styles.css">
-    	<property key="content-type" value="text/css"/>
-  	</resource>
-  	<resource type="download" name="single-card-styles" location="css/single-card-styles.css"/>
-  </web-resource>
   
   <webwork1 key="jacm-webwork-plugin" name="JACM Webwork Plugin" i18n-name-key="jacm-webwork-plugin.name">
     <description key="jacm-webwork-plugin.description">The JACM Webwork Plugin</description>

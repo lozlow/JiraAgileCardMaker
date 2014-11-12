@@ -23,7 +23,6 @@ import com.atlassian.jira.util.VelocityParamFactory;
 import com.caplin.jacm.IssueFormatter;
 import com.caplin.jacm.factories.IssueFormatterFactory;
 import com.caplin.jacm.services.IssueHelperService;
-import com.caplin.jacm.services.IssueRegistryService;
 
 @SuppressWarnings("deprecation")
 public class JACMView extends AbstractSearchRequestView {
@@ -35,12 +34,11 @@ public class JACMView extends AbstractSearchRequestView {
     private final VelocityParamFactory velocityParams;
 	private final IssueFormatterFactory issueFormatterFactory;
 	private final IssueHelperService issueHelperService;
-	private final IssueRegistryService issueRegisterService;
+	private IssueRegistry issueRegistry = null;
  
     public JACMView(JiraAuthenticationContext authenticationContext, SearchProviderFactory searchProviderFactory,
             IssueFactory issueFactory, SearchProvider searchProvider, VelocityParamFactory velocityParams,
-            IssueFormatterFactory issueFormatterFactory, IssueHelperService issueHelperService,
-            IssueRegistryService issueRegisterService) {
+            IssueFormatterFactory issueFormatterFactory, IssueHelperService issueHelperService) {
         this.authenticationContext = authenticationContext;
         this.searchProviderFactory = searchProviderFactory;
         this.issueFactory = issueFactory;
@@ -48,14 +46,14 @@ public class JACMView extends AbstractSearchRequestView {
         this.velocityParams = velocityParams;
         this.issueFormatterFactory = issueFormatterFactory;
         this.issueHelperService = issueHelperService;
-        this.issueRegisterService = issueRegisterService;
     }
 	
     @Override
     public void writeSearchResults(SearchRequest searchRequest, SearchRequestParams searchRequestParams, Writer writer) throws SearchException {
         final Map<String, Object> defaultParams = this.velocityParams.getDefaultVelocityParams(authenticationContext);
         final Map<String, Object> headerParams = new HashMap<String, Object> (defaultParams);
-        this.issueRegisterService.clearRegisteredIssues();
+        
+        this.issueRegistry = new IssueRegistry();
         
         try {
             writer.write(descriptor.getHtml("header", headerParams));
@@ -84,15 +82,15 @@ public class JACMView extends AbstractSearchRequestView {
             throw new RuntimeException(e);
         }
         
-        this.issueRegisterService.clearRegisteredIssues();
+        this.issueRegistry.clearRegisteredIssues();
     }
     
     private void writeIssue(Issue issue, Writer writer) throws IOException {
-    	if (issueRegisterService.isIssueRegistered(issue) == false) {
+    	if (this.issueRegistry.isIssueRegistered(issue) == false) {
     		IssueFormatter issueHelper = issueFormatterFactory.createIssueFormatter(issue);
             writer.write(descriptor.getHtml("single-view", issueHelper.toMap()));
             
-            issueRegisterService.registerIssue(issue);
+            this.issueRegistry.registerIssue(issue);
     	}
     }
     
