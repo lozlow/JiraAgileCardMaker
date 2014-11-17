@@ -82,6 +82,7 @@
 
     .estimate-info .text, .actual-info .text {
         font-size: 40px;
+        display: inline-block;
     }
 
     .sup-text {
@@ -89,7 +90,7 @@
     }
 
     .project-key {
-
+        display: inline-block;
     }
 
     .right-bar div:first-child {
@@ -106,13 +107,7 @@
     
     .sub-task-list {
     	white-space: nowrap;
-    	direction: rtl;
     	text-align: left;
-    }
-    
-    .sub-task-list li {
-    	overflow: hidden;
-    	text-overflow: ellipsis;
     }
 
     .priority {
@@ -125,6 +120,7 @@
 
     .issue-number {
         font-size: 45px;
+        display: inline-block;
     }
 
     .summary-info {
@@ -186,12 +182,18 @@
     }
 </style>
 <style media="print">
+	@page {
+	  margin: 0;
+	}
 	body {
 	  margin: 0;
 	  padding: 0;
 	}
 	div {
 	  margin: 2px !important;
+	}
+	table.agile-card, table.agile-card td {
+	  page-break-inside: avoid !important;
 	}
 </style>
 <link type="text/css" class="required" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
@@ -201,17 +203,37 @@
   var jQuery2 = jQuery;
   jQuery.noConflict(true);
   
-  jQuery2(document).ready(function() {
-  	jQuery2('.estimate-info .text, .actual-info .text').each(function() {
-  		var parentWidth = parseInt(jQuery2(this).parent().width());
-  		var spanWidth = parseInt(jQuery2(this).width());
+  jQuery2(document).ready(function($) {
+  
+  	// Resize text to fit as needed
+  	$('.estimate-info .text, .actual-info .text, .project-key, .issue-number').each(function() {
+  		var containerWidth = $(this).parent().innerWidth();
+  		var spanWidth = this.scrollWidth;
   		
-  		while (spanWidth > parentWidth) {
-  			var fontSize = parseInt(jQuery2(this).css("font-size"));
+  		while (spanWidth > containerWidth) {
+  			var fontSize = parseInt($(this).css("font-size"));
   			
-  			jQuery2(this).css({fontSize: fontSize - 1});
-  			spanWidth = jQuery2(this).width();
+  			$(this).css({fontSize: fontSize - 1});
+  			spanWidth = $(this).width();
   		} 
   	});
+  	
+  	// Ellipsis sub-task ids
+  	$('.sub-task-list li').each(function() {
+  		var containerWidth = $(this).innerWidth();
+  		var liWidth = this.scrollWidth;
+  		var taskId = $(this).text();
+  		
+  		while (liWidth > containerWidth) {
+  			taskId = taskId.slice(1);
+  			$(this).text(taskId);
+  			
+  			liWidth = this.scrollWidth;
+  		}
+  		
+  		taskId = '...' + taskId.slice(1);
+  		$(this).text(taskId);  		
+  	});
+  	
   });
 </script>

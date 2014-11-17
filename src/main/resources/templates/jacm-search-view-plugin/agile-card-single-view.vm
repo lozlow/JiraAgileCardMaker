@@ -6,7 +6,7 @@
 #set($summaryColSpan = 3)
 #end
 
-  <table class="$!tableClass">
+  <table class="agile-card $!tableClass">
     <tbody>
       <tr>
         <td rowspan="2" class="project-info $!issueType">
